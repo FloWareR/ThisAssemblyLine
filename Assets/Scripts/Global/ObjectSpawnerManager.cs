@@ -8,23 +8,20 @@ namespace Global
 {
     public class ObjectSpawnerManager : MonoBehaviour
     {
-        public LevelData currentLevel;
+        [SerializeField] private Transform spawnPoint;
+        private LevelData _currentLevel;
         private float _spawnChance;
         private List<PartData> _junkPieces = new List<PartData>();
         private Dictionary<PartData, int> _requiredPieces = new Dictionary<PartData, int>();
         
         private bool _inGame = true;
-        private void Start()
-        {
-            InitializeParts();
-            StartCoroutine(LevelSpawnLoop());
-        }
 
-        private void InitializeParts()
+        public void InitializeParts(LevelData data)
         {
+            _currentLevel = data;
             _requiredPieces.Clear();
             _junkPieces.Clear();
-            foreach (var requiredObject in currentLevel.objectsToBuild)
+            foreach (var requiredObject in _currentLevel.objectsToBuild)
             {
                 foreach (var requiredPart in requiredObject.requiredParts)
                 {
@@ -34,7 +31,8 @@ namespace Global
                     }
                 }
             }
-            _junkPieces.AddRange(currentLevel.junkParts);
+            _junkPieces.AddRange(_currentLevel.junkParts);
+            StartCoroutine(LevelSpawnLoop());
         }
 
         private IEnumerator LevelSpawnLoop()
@@ -42,7 +40,7 @@ namespace Global
             while (_inGame)
             {
                 RandomizeSpawn();
-                yield return new WaitForSeconds(currentLevel.spawnInterval);
+                yield return new WaitForSeconds(_currentLevel.spawnInterval);
             }
         }
 
@@ -50,7 +48,7 @@ namespace Global
         {
             var spawnChance = Random.Range(0f, 1f);
 
-            if (spawnChance <= currentLevel.requiredPartProbability)
+            if (spawnChance <= _currentLevel.requiredPartProbability)
             {
                 SpawnRequiredPart();
             }
@@ -63,7 +61,7 @@ namespace Global
         private void SpawnJunkPart()
         {
             var randomJunkPart = _junkPieces[Random.Range(0, _junkPieces.Count)];
-            ObjectPoolManager.Instance.SpawnFromPool(randomJunkPart.partName, transform.position, transform.rotation);
+            ObjectPoolManager.Instance.SpawnFromPool(randomJunkPart.partName, spawnPoint.position, transform.rotation);
         }
 
         private void SpawnRequiredPart()
@@ -71,7 +69,7 @@ namespace Global
             var requiredPartKeys = new List<PartData>(_requiredPieces.Keys);
             var randomPart = requiredPartKeys[Random.Range(0, requiredPartKeys.Count)];
             
-            ObjectPoolManager.Instance.SpawnFromPool(randomPart.partName, transform.position, transform.rotation);
+            ObjectPoolManager.Instance.SpawnFromPool(randomPart.partName, spawnPoint.position, transform.rotation);
 
             _requiredPieces[randomPart]--;
         }
