@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestPart3
   m_EditorClassIdentifier: 
   partName: TestPrefab3
-  partPrefab: {fileID: 2037825780521059516, guid: 2d9ea9282a60ebc41a0cf5c5371730bd, type: 3}
+  partPrefab: {fileID: 2226234696440065480, guid: fe2f2ed4ab290704c86896fe893c7638, type: 3}

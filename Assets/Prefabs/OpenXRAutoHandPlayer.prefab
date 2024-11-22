@@ -7964,8 +7964,8 @@ MonoBehaviour:
   devices:
   - deviceNames:
     - Oculus
-    position: {x: 0.04, y: -0.04, z: -0.023}
-    rotation: {x: 16, y: 8, z: 8}
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
   - deviceNames:
     - Windows MR
     position: {x: 0.003, y: -0.005, z: -0.078}
@@ -7996,8 +7996,8 @@ MonoBehaviour:
   devices:
   - deviceNames:
     - Oculus
-    position: {x: 0.05, y: 0, z: 0}
-    rotation: {x: 85, y: 0, z: 0}
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
   - deviceNames:
     - Vive
     - Index
@@ -8257,13 +8257,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7668830299865818643}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.6690154, y: 0.09402393, z: -0.10260913, w: -0.73010224}
+  m_LocalRotation: {x: 0.67559016, y: 0, z: 0, w: 0.7372774}
   m_LocalPosition: {x: -0.05, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7668830300565591112}
-  m_LocalEulerAnglesHint: {x: 16, y: -8, z: 8}
+  m_LocalEulerAnglesHint: {x: 85, y: 0, z: 0}
 --- !u!1 &7668830300115482716
 GameObject:
   m_ObjectHideFlags: 0
@@ -8471,6 +8471,7 @@ GameObject:
   - component: {fileID: 7668830300499184788}
   - component: {fileID: 7668830300499184789}
   - component: {fileID: 7668830300499184786}
+  - component: {fileID: 8029619737319089030}
   m_Layer: 31
   m_Name: Camera (head)
   m_TagString: MainCamera
@@ -8502,8 +8503,8 @@ Camera:
   m_GameObject: {fileID: 7668830300499184784}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19607846, g: 0.3274957, b: 0.4745098, a: 1}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -8583,6 +8584,50 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 1
+--- !u!114 &8029619737319089030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7668830300499184784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &7668830300565591113
 GameObject:
   m_ObjectHideFlags: 0
@@ -9143,14 +9188,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8831681785675433008}
     m_Modifications:
+    - target: {fileID: 3231403016657467200, guid: 035aaa70c735c164bbf1a8760fad9f76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876478601354298033, guid: 035aaa70c735c164bbf1a8760fad9f76, type: 3}
+      propertyPath: maxRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6876478601354298033, guid: 035aaa70c735c164bbf1a8760fad9f76, type: 3}
       propertyPath: primaryHand
       value: 
       objectReference: {fileID: 1575735659161826260}
     - target: {fileID: 6876478601354298033, guid: 035aaa70c735c164bbf1a8760fad9f76, type: 3}
+      propertyPath: useFlickPull
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876478601354298033, guid: 035aaa70c735c164bbf1a8760fad9f76, type: 3}
       propertyPath: secondaryHand
       value: 
       objectReference: {fileID: 1575735658702523898}
+    - target: {fileID: 6876478601354298033, guid: 035aaa70c735c164bbf1a8760fad9f76, type: 3}
+      propertyPath: useInstantPull
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9006060476868069460, guid: 035aaa70c735c164bbf1a8760fad9f76, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -10999,6 +11060,10 @@ PrefabInstance:
     - target: {fileID: 3824179886319958982, guid: 550b13c7ab5987948bb95292d813fbde, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828819849286420516, guid: 550b13c7ab5987948bb95292d813fbde, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

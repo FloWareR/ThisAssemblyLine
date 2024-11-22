@@ -66,12 +66,10 @@ public class XRHandOffset : MonoBehaviour {
     internal void AdjustPositions(XRHandOffset otherOffset) {
         var defaultPos = GetDefaultPositionOffset() - otherOffset.GetDefaultPositionOffset();
         var defaultRot = GetDefaultRotationOffset() - otherOffset.GetDefaultRotationOffset();
-
-        foreach(var leftOffset in leftOffsets) {
+        foreach(var leftOffset in leftOffsets) {    
             leftOffset.localPosition += new Vector3(-defaultPos.x, defaultPos.y, defaultPos.z);
             leftOffset.localEulerAngles += new Vector3(defaultRot.x, -defaultRot.y, -defaultRot.z);
         }
-
         foreach(var rightOffset in rightOffsets) {
             rightOffset.localPosition += defaultPos;
             rightOffset.localEulerAngles += defaultRot;
