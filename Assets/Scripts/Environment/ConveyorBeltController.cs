@@ -11,6 +11,7 @@ namespace Environment
         [Tooltip("In Seconds")] public float moveInterval;
         [Tooltip("In Meters")] public float moveDistance;
         [SerializeField] private bool mainBelt;
+        [SerializeField] private LayerMask ignore;
         public bool active = true;
         private bool _isMoving;
         private float _trueSpeed;
@@ -48,6 +49,7 @@ namespace Environment
         
         private void OnCollisionStay(Collision collision)
         {
+            if ((ignore.value & (1 << collision.gameObject.layer)) != 0) return;            
             var attachedRigidbody = collision.collider.attachedRigidbody;
             if (attachedRigidbody == null || attachedRigidbody.isKinematic) return;
             var conveyorDirection = transform.forward;
