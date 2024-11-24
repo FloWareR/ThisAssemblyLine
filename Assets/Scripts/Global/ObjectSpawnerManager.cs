@@ -23,7 +23,8 @@ namespace Global
             _junkPieces.Clear();
             foreach (var requiredObject in _currentLevel.objectsToBuild)
             {
-                foreach (var requiredPart in requiredObject.requiredParts)
+                var objectData = requiredObject.objectData;
+                foreach (var requiredPart in objectData.requiredParts)
                 {
                     if (!_requiredPieces.TryAdd(requiredPart, 1))
                     {

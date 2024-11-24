@@ -15,8 +15,8 @@ MonoBehaviour:
   levelNumber: 1
   timeLimit: 0
   objectsToBuild:
-  - {fileID: 11400000, guid: caf3d91c8376e8d4983ebb5fedd46d01, type: 2}
-  - {fileID: 11400000, guid: caf3d91c8376e8d4983ebb5fedd46d01, type: 2}
+  - objectData: {fileID: 11400000, guid: caf3d91c8376e8d4983ebb5fedd46d01, type: 2}
+    quantity: 2
   conveyorSpeed: 3.5
   requiredPartProbability: 0.367
   spawnInterval: 2.5

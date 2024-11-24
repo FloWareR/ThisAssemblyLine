@@ -7,6 +7,7 @@ namespace ScriptableObjects
     {
         public string objectName;
         public GameObject objectPrefab;
+        public Sprite objectImage;
         public PartData[] requiredParts;
     }
 }

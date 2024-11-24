@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using Environment;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -14,6 +14,11 @@ namespace Global
         
         public int currentScore;
         private bool _isLevelActive;
+
+        public GameManager(bool isLevelActive)
+        {
+            _isLevelActive = isLevelActive;
+        }
 
         private void Awake()
         {
@@ -39,6 +44,10 @@ namespace Global
             currentLevel = levels[levelIndex];
             _isLevelActive = true;
             _objectSpawnerManager.InitializeParts(currentLevel);
+            foreach (var objectDta in currentLevel.objectsToBuild)
+            { 
+                MonitorManager.Instance.SpawnMonitor(objectDta.objectData.objectImage, objectDta.quantity);
+            }
         }
     }
 }
