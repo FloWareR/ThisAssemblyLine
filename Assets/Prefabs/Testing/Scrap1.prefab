@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4208302118648952640}
   - component: {fileID: 4843252923767734328}
   - component: {fileID: 1424301485694264744}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Scrap1
   m_TagString: Weldable
   m_Icon: {fileID: 0}
@@ -215,4 +215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689fe83f6ba026e4187afd805a784e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultBreakForce: 700
+  defaultBreakTorque: 500
+  jointBreakDelay: 0.5
   isWelded: 0
+  weldableLayer:
+    serializedVersion: 2
+    m_Bits: 1024
