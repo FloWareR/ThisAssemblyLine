@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 332c73815d798ca43992557b91da22d9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187474
+  packageName: FactoryLowPoly
+  packageVersion: 1.0
+  assetPath: Assets/Low Poly Factory/Maps/Demo/LightingData.asset
+  uploadId: 412898

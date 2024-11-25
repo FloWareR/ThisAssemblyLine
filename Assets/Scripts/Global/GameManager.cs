@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using Environment;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -11,6 +11,8 @@ namespace Global
         public LevelData currentLevel;
         public int currentLevelIndex = 0;
         private ObjectSpawnerManager _objectSpawnerManager;
+        public static event Action<LevelData> LoadNewLevel;
+ 
         
         public int currentScore;
         private bool _isLevelActive;
@@ -43,11 +45,7 @@ namespace Global
             currentLevelIndex = levelIndex;
             currentLevel = levels[levelIndex];
             _isLevelActive = true;
-            _objectSpawnerManager.InitializeParts(currentLevel);
-            foreach (var objectDta in currentLevel.objectsToBuild)
-            { 
-                MonitorManager.Instance.SpawnMonitor(objectDta.objectData.objectImage, objectDta.quantity);
-            }
+            LoadNewLevel?.Invoke(currentLevel);
         }
     }
 }

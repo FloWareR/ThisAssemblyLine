@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f93506119b3504aa221927d4b25d6c, type: 3}
   m_Name: TestPart3
   m_EditorClassIdentifier: 
-  partName: TestPrefab3
+  partName: Scrap3
   partPrefab: {fileID: 2226234696440065480, guid: fe2f2ed4ab290704c86896fe893c7638, type: 3}

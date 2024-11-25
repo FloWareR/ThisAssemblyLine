@@ -44,6 +44,9 @@ namespace Global
             objectToSpawn.transform.SetParent(null);
             objectToSpawn.SetActive(true);
             objectToSpawn.transform.position = spawnPosition;
+            objectToSpawn.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            objectToSpawn.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
             objectToSpawn.transform.rotation = spawnRotation;
             
             return objectToSpawn;

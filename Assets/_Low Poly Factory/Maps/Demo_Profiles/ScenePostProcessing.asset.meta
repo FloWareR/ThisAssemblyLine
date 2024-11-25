@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 45bf8b5f753db05419055023f67e9538
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187474
+  packageName: FactoryLowPoly
+  packageVersion: 1.0
+  assetPath: Assets/Low Poly Factory/Maps/Demo_Profiles/ScenePostProcessing.asset
+  uploadId: 412898

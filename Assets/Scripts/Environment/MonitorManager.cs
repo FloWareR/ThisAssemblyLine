@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Global;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace Environment
@@ -21,6 +22,24 @@ namespace Environment
             else Destroy(this);
         }
         
+        private void OnEnable()
+        {
+            GameManager.LoadNewLevel += OnLoadNewLevel;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.LoadNewLevel -= OnLoadNewLevel;
+        }
+        
+        private void OnLoadNewLevel(LevelData obj)
+        {
+            foreach (var objectToBuild in obj.objectsToBuild)
+            {
+                SpawnMonitor(objectToBuild.objectData.objectImage, objectToBuild.quantity);
+            }
+        }
+
         public void SpawnMonitor(Sprite objectImage, int quantity)
         {
            var newMonitor =  ObjectPoolManager.Instance.SpawnFromPool(

@@ -124,6 +124,9 @@ MonoBehaviour:
   speed: 1
   moveInterval: 2
   moveDistance: 0.5
-  mainBelt: 0
+  mainBelt: 1
+  ignore:
+    serializedVersion: 2
+    m_Bits: 0
   active: 1
   currentLevel: {fileID: 0}

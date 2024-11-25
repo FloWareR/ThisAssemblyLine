@@ -15,7 +15,22 @@ namespace Global
         private Dictionary<PartData, int> _requiredPieces = new Dictionary<PartData, int>();
         
         private bool _inGame = true;
+        
+        private void OnEnable()
+        {
+            GameManager.LoadNewLevel += OnLoadNewLevel;
+        }
 
+        private void OnLoadNewLevel(LevelData obj)
+        {
+            InitializeParts(obj);
+        }
+
+        private void OnDisable()
+        {
+            GameManager.LoadNewLevel -= OnLoadNewLevel;
+        }
+        
         public void InitializeParts(LevelData data)
         {
             _currentLevel = data;

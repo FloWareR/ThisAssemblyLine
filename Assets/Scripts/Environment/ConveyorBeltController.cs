@@ -1,4 +1,5 @@
 using System.Collections;
+using Global;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -8,12 +9,9 @@ namespace Environment
     {
         
         [Tooltip("In Meters/Seconds (doesnt apply to main belt")] public float speed;
-        [Tooltip("In Seconds")] public float moveInterval;
-        [Tooltip("In Meters")] public float moveDistance;
         [SerializeField] private bool mainBelt;
         [SerializeField] private LayerMask ignore;
         public bool active = true;
-        private bool _isMoving;
         private float _trueSpeed;
         private float _time;
         
@@ -30,14 +28,33 @@ namespace Environment
         private void Start()
         {
             _conveyorRenderer = GetComponent<Renderer>();
-            StartCoroutine(MoveBelt());
+        }
+        private void OnEnable()
+        {
+            GameManager.LoadNewLevel += OnLoadNewLevel;
+        }
+
+        private void OnLoadNewLevel(LevelData obj)
+        {
+            StartNewLevel(obj);
+        }
+
+        private void OnDisable()
+        {
+            GameManager.LoadNewLevel -= OnLoadNewLevel;
+        }
+        
+        public void StartNewLevel(LevelData newLevel)
+        {
+            currentLevel = newLevel;
         }
         
         private void Update()
         {
+            if (!currentLevel) return;
             var effectiveSpeed = mainBelt ? currentLevel.conveyorSpeed : speed;
-            _trueSpeed = _isMoving ? effectiveSpeed : 0;
-            if (!_isMoving)
+            _trueSpeed =  effectiveSpeed;
+            if (!active)
             {
                 _conveyorRenderer.material.SetFloat(CurrentTime, _time);
                 return;
@@ -56,34 +73,15 @@ namespace Environment
             var movement = conveyorDirection * _trueSpeed * Time.deltaTime; 
             attachedRigidbody.MovePosition(attachedRigidbody.position + movement);
         }
-
-        private IEnumerator MoveBelt()
-        {
-            while (active)
-            {
-                _isMoving = true;
-                var effectiveSpeed = mainBelt ? currentLevel.conveyorSpeed : speed;
-                if (mainBelt)
-                {
-                    moveInterval = currentLevel.spawnInterval - moveDistance;
-                }
-                yield return new WaitForSeconds(moveDistance / effectiveSpeed);
-                _isMoving = false;
-                yield return new WaitForSeconds(moveInterval);
-            }
-        }
-
+        
         public void StopAllMovement()
         {
             active = false;
-            _isMoving = false;
         }
         
         public void ResumeAllMovement()
         {
             active = true;
-            _isMoving = true;
-            StartCoroutine(MoveBelt());
         }
     }
 }

@@ -20,7 +20,6 @@ public class XRProviderPicker : MonoBehaviour
     void OnEnable() {
         var loaders = XRGeneralSettings.Instance.Manager.activeLoaders;
         foreach(var loader in loaders) {
-            Debug.Log(loader.name);
             if(providerName == "" || providerName == loader.name)
                 hasProvider = true;
         }

@@ -216,7 +216,9 @@ namespace Autohand
 #if UNITY_2023
             return GameObject.FindObjectsByType<T>((includeInactive ? FindObjectsInactive.Include : FindObjectsInactive.Exclude), FindObjectsSortMode.None);
 #elif (UNITY_2020_3_OR_NEWER)
+#pragma warning disable CS0618 // Type or member is obsolete
             return GameObject.FindObjectsOfType<T>(includeInactive);
+#pragma warning restore CS0618 // Type or member is obsolete
 #else
             return GameObject.FindObjectsOfType<T>();
 #endif
