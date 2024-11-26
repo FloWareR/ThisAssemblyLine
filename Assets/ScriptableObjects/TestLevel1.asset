@@ -18,7 +18,7 @@ MonoBehaviour:
   - objectData: {fileID: 11400000, guid: caf3d91c8376e8d4983ebb5fedd46d01, type: 2}
     quantity: 2
   conveyorSpeed: 0.5
-  requiredPartProbability: 0.377
+  requiredPartProbability: 1
   spawnInterval: 1.5
   junkParts:
   - {fileID: 11400000, guid: f6f9b2a25511169408d66e6c1d50601d, type: 2}
