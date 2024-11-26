@@ -1,4 +1,3 @@
-using System.Collections;
 using Global;
 using ScriptableObjects;
 using UnityEngine;
@@ -11,6 +10,8 @@ namespace Environment
         [Tooltip("In Meters/Seconds (doesnt apply to main belt")] public float speed;
         [SerializeField] private bool mainBelt;
         [SerializeField] private LayerMask ignore;
+        [SerializeField] private Vector3 direction = Vector3.right;
+
         public bool active = true;
         private float _trueSpeed;
         private float _time;
@@ -63,16 +64,23 @@ namespace Environment
             _conveyorRenderer.material.SetFloat(CurrentTime, _time);
             _conveyorRenderer.material.SetFloat(Speed, effectiveSpeed); 
         }
-        
-        private void OnCollisionStay(Collision collision)
+
+        private void OnTriggerStay(Collider collision)
         {
             if ((ignore.value & (1 << collision.gameObject.layer)) != 0) return;            
-            var attachedRigidbody = collision.collider.attachedRigidbody;
+
+            var attachedRigidbody = collision.GetComponent<Collider>().attachedRigidbody;
             if (attachedRigidbody == null || attachedRigidbody.isKinematic) return;
-            var conveyorDirection = transform.forward;
-            var movement = conveyorDirection * _trueSpeed * Time.deltaTime; 
-            attachedRigidbody.MovePosition(attachedRigidbody.position + movement);
+            var conveyorCenter = GetComponent<Collider>().bounds.center;
+            var objectPosition = attachedRigidbody.position;
+            var perpendicularDirection = Vector3.Cross(direction, Vector3.up).normalized;
+            var offset = Vector3.Project(new Vector3(objectPosition.x - conveyorCenter.x, 0, objectPosition.z - conveyorCenter.z), perpendicularDirection);
+            var correctiveForce = -offset * .5f * Time.deltaTime;
+            var movement = direction.normalized * _trueSpeed * Time.deltaTime;
+            var finalMovement = movement + correctiveForce;
+            attachedRigidbody.MovePosition(objectPosition + finalMovement);
         }
+
         
         public void StopAllMovement()
         {
