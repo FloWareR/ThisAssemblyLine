@@ -18,6 +18,9 @@ namespace Global
 
         private Rigidbody _rigidbody;
 
+        [Header("VR Holding Settings")]
+        public bool isHeld;
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -38,14 +41,12 @@ namespace Global
 
         private void OnCollisionEnter(Collision other)
         {
-            if (((1 << other.gameObject.layer) & weldableLayer) == 0 || isWelded) return;
-
+            if (!isHeld || ((1 << other.gameObject.layer) & weldableLayer) == 0 || isWelded) return;
             var otherWelding = other.gameObject.GetComponent<ObjectWelding>();
-            if (otherWelding != null)
+            if (otherWelding != null && otherWelding.isHeld)
             {
                 otherWelding.isWelded = true;
             }
-
             isWelded = true;
             CombineRigidbodies(other.gameObject);
         }
@@ -70,6 +71,11 @@ namespace Global
         {
             yield return new WaitForSeconds(jointBreakDelay);
             isWelded = false;
+        }
+
+        public void SetHeldState(bool held)
+        {
+            isHeld = held;
         }
     }
 }
