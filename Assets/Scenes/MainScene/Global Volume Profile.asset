@@ -28,13 +28,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   distance:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 10
   baseHeight:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   maximumHeight:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 50
   enableGround:
     m_OverrideState: 1
@@ -43,10 +43,10 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   density:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.599
   attenuationDistance:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 3
   enableMainLightContribution:
     m_OverrideState: 0
@@ -64,14 +64,14 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   additionalLightsAnisotropy:
-    m_OverrideState: 0
-    m_Value: 0.25
+    m_OverrideState: 1
+    m_Value: 0.91
   additionalLightsScattering:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 16
   additionalLightsRadius:
-    m_OverrideState: 0
-    m_Value: 0.2
+    m_OverrideState: 1
+    m_Value: 0.19
   maxSteps:
     m_OverrideState: 0
     m_Value: 64
