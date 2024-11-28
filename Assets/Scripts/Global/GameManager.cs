@@ -12,7 +12,7 @@ namespace Global
         public int currentLevelIndex = 0;
         private ObjectSpawnerManager _objectSpawnerManager;
         public static event Action<LevelData> LoadNewLevel;
- 
+
         
         public int currentScore;
         private bool _isLevelActive;
@@ -45,6 +45,10 @@ namespace Global
             currentLevelIndex = levelIndex;
             currentLevel = levels[levelIndex];
             _isLevelActive = true;
+            foreach (var objectToBuild in currentLevel.objectsToBuild)
+            {
+                ScoreManager.Instance.GetPrefabValues(objectToBuild.objectData.objectPrefab);
+            }
             LoadNewLevel?.Invoke(currentLevel);
         }
     }

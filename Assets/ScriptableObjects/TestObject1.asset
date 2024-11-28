@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestObject1
   m_EditorClassIdentifier: 
   objectName: TestObject1
-  objectPrefab: {fileID: 5653397430974518505, guid: 1b4f1d4ba66a521439a1f8d2542eea08, type: 3}
+  objectPrefab: {fileID: 7083999577568864036, guid: f6af7703edde3f94e82addb05f524ed9, type: 3}
   objectImage: {fileID: 21300000, guid: 750943d906d2be84c82c3f275a34d3eb, type: 3}
   requiredParts:
   - {fileID: 11400000, guid: c31f52774343c54459edb3df55cf099e, type: 2}
