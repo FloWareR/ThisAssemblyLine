@@ -440,6 +440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8597680091934212783}
+  - component: {fileID: 8369806497909038765}
   m_Layer: 0
   m_Name: Transport
   m_TagString: Untagged
@@ -465,6 +466,25 @@ Transform:
   - {fileID: 564316995596229798}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8369806497909038765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960006085021854714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcaa445197645d54c8d6c950f98bbb08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 20
+  despawnDistance: 1000
+  railSpawnList:
+  - {fileID: 5837653720519555983}
+  - {fileID: 2402445215218106855}
+  objectPerSide: 3
+  defaultRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
 --- !u!1 &4018262790415857933
 GameObject:
   m_ObjectHideFlags: 0
