@@ -20,7 +20,6 @@ namespace Environment
         private void Start()
         {
             SpawnRails();
-            Debug.Log(_railWidth);
             StartCoroutine(SpawnRailsCoroutine());
         }
 
@@ -41,36 +40,49 @@ namespace Environment
             // ReSharper disable once IteratorNeverReturns
         }
 
-        private void RelocateRail()
-        {
-            var currentRightPosition = _rails[^1].transform.position + new Vector3(0, 0 , _railWidth);
-            var currentLeftPosition = _rails[^2].transform.position + new Vector3(0, 0 , _railWidth);
+private void RelocateRail()
+{
+    var moveDirection = transform.forward.normalized;
+    var railRotation = Quaternion.LookRotation(moveDirection) * defaultRotation;
 
-            _rails[0].transform.position = currentRightPosition;
-            _rails[1].transform.position = currentLeftPosition;
-            var rail = _rails[0];
-            _rails.RemoveAt(0);
-            _rails.Add(rail);
-            rail = _rails[0];
-            _rails.RemoveAt(0);
-            _rails.Add(rail);
-        }
+    var currentRightPosition = _rails[^1].transform.position + (moveDirection * _railWidth);
+    var currentLeftPosition = _rails[^2].transform.position + (moveDirection * _railWidth);
 
-        private void SpawnRails()
-        {
-            var currentRightPosition = railSpawnList[0].position;
-            var currentLeftPosition = railSpawnList[1].position;
+    _rails[0].transform.SetPositionAndRotation(currentRightPosition, railRotation);
+    _rails[1].transform.SetPositionAndRotation(currentLeftPosition, railRotation);
 
-            for (var i = 0; i < objectPerSide; i++)
-            {
-                var railRight = ObjectPoolManager.Instance.SpawnFromPool("Rail", currentRightPosition, defaultRotation);
-                _rails.Add(railRight);
-                if(_railWidth == 0f)  _railWidth = railRight.GetComponent<Collider>().bounds.size.x;
-                currentRightPosition = railRight.transform.position + new Vector3(0f, 0f, _railWidth);
-                var railLeft = ObjectPoolManager.Instance.SpawnFromPool("Rail", currentLeftPosition, defaultRotation);
-                _rails.Add(railLeft);
-                currentLeftPosition = railLeft.transform.position + new Vector3(0f, 0f, _railWidth);
-            }
-        }
+    var rail = _rails[0];
+    _rails.RemoveAt(0);
+    _rails.Add(rail);
+    rail = _rails[0];
+    _rails.RemoveAt(0);
+    _rails.Add(rail);
+}
+
+private void SpawnRails()
+{
+    var currentRightPosition = railSpawnList[0].position;
+    var currentLeftPosition = railSpawnList[1].position;
+
+    var moveDirection = transform.forward.normalized;
+    var railRotation = Quaternion.LookRotation(moveDirection) * defaultRotation;
+
+    for (var i = 0; i < objectPerSide; i++)
+    {
+        var railRight = ObjectPoolManager.Instance.SpawnFromPool("Rail", currentRightPosition, railRotation);
+        _rails.Add(railRight);
+
+        if (_railWidth == 0f) _railWidth = railRight.GetComponent<Collider>().bounds.size.x;
+
+        currentRightPosition += moveDirection * _railWidth;
+
+        var railLeft = ObjectPoolManager.Instance.SpawnFromPool("Rail", currentLeftPosition, railRotation);
+        _rails.Add(railLeft);
+
+        currentLeftPosition += moveDirection * _railWidth;
+    }
+}
+
+
     }
 }

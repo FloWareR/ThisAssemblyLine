@@ -19,7 +19,6 @@ public class EnvironmentManager : MonoBehaviour
         if (enableDisableObjects != null)
         {
             enableDisableObjects.StartEnableDisableCycle();
-            Debug.Log("Enable/Disable cycle started.");
         }
         else
         {
@@ -31,7 +30,6 @@ public class EnvironmentManager : MonoBehaviour
         if (enableDisableObjects != null)
         {
             enableDisableObjects.StopEnableDisableCycle();
-            Debug.Log("Enable/Disable cycle stopped.");
         }
         else
         {
