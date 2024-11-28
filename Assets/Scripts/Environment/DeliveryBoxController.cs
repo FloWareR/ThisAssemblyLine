@@ -7,7 +7,6 @@ namespace Environment
 {
     public class DeliveryBoxController : MonoBehaviour
     {
-        [SerializeField] private float combineDelay = 2f;
         private readonly HashSet<GameObject> _objectsInBox = new HashSet<GameObject>();
         private GameManager _gameManager;
         private void Awake()
@@ -44,14 +43,23 @@ namespace Environment
         private void CombineObjectsRoutine(GameObject objectPrefab)
         {
             var combinedObject = new GameObject("CombinedObject");
-            
+
             foreach (var obj in _objectsInBox)
             {
                 obj.transform.SetParent(combinedObject.transform);
             }
+            
+            var score = ScoreManager.Instance.CompareObjects(objectPrefab, combinedObject);
+            Debug.Log($"Score:{score}");
 
-            ScoreManager.Instance.CompareObjects(objectPrefab, combinedObject);
+            foreach (var objectUsed in _objectsInBox)
+            {
+                var sanitizedObjectName = objectUsed.name.Replace("(Clone)", "").Trim();
+                ObjectPoolManager.Instance.ReturnToPool(sanitizedObjectName, objectUsed);
+            }
+            Destroy(combinedObject);
             _objectsInBox.Clear();
         }
+
     }
 }
