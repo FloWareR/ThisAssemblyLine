@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Global
 {
@@ -7,6 +8,8 @@ namespace Global
     {
         public static ScoreManager Instance;
         
+        [SerializeField] private float maxDistance = 1.0f; 
+        [SerializeField ]private float tolerance = 0.005f;  
         private void Awake()
         {
             if (Instance == null) Instance = this;
@@ -15,66 +18,62 @@ namespace Global
 
         public float CompareObjects(GameObject prefabObject, GameObject playerObject)
         {
-            if (prefabObject == null || playerObject == null) return 0f;
-            var prefabValues = GetPrefabValues(prefabObject);
-            var playerValues = GetPrefabValues(playerObject);
+            var prefabChildren = GetChildren(prefabObject.transform);
+            var playerChildren = GetChildren(playerObject.transform); 
+            var prefabDistance = CalculateDistance(prefabChildren); 
+            var playerDistance = CalculateDistance(playerChildren);
             
-            DebugMetrics(prefabValues);
-            DebugMetrics(playerValues);
-
-            return 0; 
+            return CalculateScore(prefabDistance, playerDistance);
         }
 
-        private void DebugMetrics(Dictionary<(string, string), float> metrics)
+        private List<GameObject> GetChildren(Transform parent)
         {
-            foreach (var entry in metrics)
+            var snapPointsList = new List<GameObject>();
+            foreach (Transform child in parent)
             {
-                var key1 = entry.Key.Item1;  
-                var key2 = entry.Key.Item2; 
-                var distance = entry.Value;
-
-                Debug.Log($"Piece 1: {key1}, Piece 2: {key2}, Distance: {distance}");
-            }
-        }
-
-        public Dictionary<(string, string), float> GetPrefabValues(GameObject objectPrefab)
-        {
-            var prefabPieces = GetChildPieces(objectPrefab.transform);
-            return GetPieceMetrics(prefabPieces);
-        }
-
-        private Dictionary<(string, string), float> GetPieceMetrics(List<Transform> prefabPieces)
-        {
-            var metrics = new Dictionary<(string, string), float>();
-
-            for (var i = 0; i < prefabPieces.Count; i++)
-            {
-                var snapPoint1 = prefabPieces[i].Find("SnapPoint");
-                for (var j = i + 1; j < prefabPieces.Count; j++)
+                if(child.CompareTag($"SnapPoint"))
                 {
-                    var snapPoint2 = prefabPieces[j].Find("SnapPoint");
+                    snapPointsList.Add(child.gameObject);
+                }
 
-                    if (snapPoint1 != null && snapPoint2 != null)
+                foreach (Transform miniChild in child)
+                {
+                    if(miniChild.CompareTag($"SnapPoint"))
                     {
-                        var distance = Vector3.Distance(snapPoint1.position, snapPoint2.position);
-
-                        metrics.Add((prefabPieces[i].name, prefabPieces[j].name), distance);
+                        snapPointsList.Add(miniChild.gameObject);
                     }
                 }
             }
 
-            return metrics;
+            return snapPointsList;
         }
 
-        private List<Transform> GetChildPieces(Transform parent)
+        private float CalculateDistance(List<GameObject> objectList)
         {
-            var pieces = new List<Transform>();
-            foreach (Transform child in parent)
-            {
-                pieces.Add(child);
-            }
-            return pieces;
+            var object1 = objectList[0];
+            var object2 = objectList[1];
+            var distance = Vector3.Distance(object1.transform.position, object2.transform.position);
+            return (float)System.Math.Round(distance, 4);
+
         }
         
+        private float CalculateScore(float prefabDistance, float playerDistance)
+        {
+            if (playerDistance >= prefabDistance + maxDistance)
+            {
+                return 0f;
+            }
+
+            var difference = Mathf.Abs(prefabDistance - playerDistance);
+
+            if (difference <= tolerance)
+            {
+                return 100f; 
+            }
+
+            var maxDifference = maxDistance - tolerance;
+            var score = 100f * (1f - (difference / maxDifference));
+            return Mathf.Clamp(score, 0f, 100f);
+        }
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using Global;
 using UnityEngine;
@@ -7,7 +7,7 @@ namespace Environment
 {
     public class DeliveryBoxController : MonoBehaviour
     {
-        private readonly HashSet<GameObject> _objectsInBox = new HashSet<GameObject>();
+        private HashSet<GameObject> _objectsInBox = new HashSet<GameObject>();
         private GameManager _gameManager;
         private void Awake()
         {
@@ -36,14 +36,13 @@ namespace Environment
             foreach (var objectToBuild in _gameManager.currentLevel.objectsToBuild)
             {
                 CombineObjectsRoutine(objectToBuild.objectData.objectPrefab);
-                
             }
         }
 
         private void CombineObjectsRoutine(GameObject objectPrefab)
         {
             var combinedObject = new GameObject("CombinedObject");
-
+            
             foreach (var obj in _objectsInBox)
             {
                 obj.transform.SetParent(combinedObject.transform);

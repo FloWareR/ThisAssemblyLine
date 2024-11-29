@@ -45,10 +45,6 @@ namespace Global
             currentLevelIndex = levelIndex;
             currentLevel = levels[levelIndex];
             _isLevelActive = true;
-            foreach (var objectToBuild in currentLevel.objectsToBuild)
-            {
-                ScoreManager.Instance.GetPrefabValues(objectToBuild.objectData.objectPrefab);
-            }
             LoadNewLevel?.Invoke(currentLevel);
         }
     }
