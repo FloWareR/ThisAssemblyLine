@@ -1,19 +1,27 @@
+using Global;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Environment
 {
     public class ScoreBoardController : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+
+        [SerializeField] private TextMeshProUGUI scoreCounter;
+        [SerializeField] private TextMeshProUGUI prevObjectCounter;
+
+        private void Start()
         {
-        
+            scoreCounter.text = GameManager.instance.currentScore.ToString();
+            prevObjectCounter.text = GameManager.instance.previousObjectScore.ToString();
         }
 
-        // Update is called once per frame
-        void Update()
+
+        public void UpdateScores()
         {
-        
+            scoreCounter.text = GameManager.instance.currentScore.ToString();
+            prevObjectCounter.text = GameManager.instance.previousObjectScore.ToString();
         }
     }
 }

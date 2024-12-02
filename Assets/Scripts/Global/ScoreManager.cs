@@ -19,12 +19,19 @@ namespace Global
         public float CompareObjects(GameObject prefabObject, GameObject playerObject)
         {
             var prefabChildren = GetChildren(prefabObject.transform);
-            var playerChildren = GetChildren(playerObject.transform); 
-            var prefabDistance = CalculateDistance(prefabChildren); 
+            var playerChildren = GetChildren(playerObject.transform);
+
+            if (!AreSnapPointsMatching(prefabChildren, playerChildren))
+            {
+                return -50f;
+            }
+
+            var prefabDistance = CalculateDistance(prefabChildren);
             var playerDistance = CalculateDistance(playerChildren);
-            
+
             return CalculateScore(prefabDistance, playerDistance);
         }
+
 
         private List<GameObject> GetChildren(Transform parent)
         {
@@ -75,5 +82,17 @@ namespace Global
             var score = 100f * (1f - (difference / maxDifference));
             return Mathf.Clamp(score, 0f, 100f);
         }
+        
+        private bool AreSnapPointsMatching(List<GameObject> prefabChildren, List<GameObject> playerChildren)
+        {
+            if (prefabChildren.Count != playerChildren.Count)
+                return false;
+
+            var prefabNames = new HashSet<string>(prefabChildren.ConvertAll(child => child.name));
+            var playerNames = new HashSet<string>(playerChildren.ConvertAll(child => child.name));
+
+            return prefabNames.SetEquals(playerNames);
+        }
+
     }
 }
