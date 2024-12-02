@@ -50,15 +50,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: TestPrefab
-    prefab: {fileID: 2037825780521059516, guid: ed39f0a055384c84db73882ad66cdf84, type: 3}
-    initialSize: 1
-  - tag: TestPrefab2
-    prefab: {fileID: 2037825780521059516, guid: a6f18bd82d5052649a1029246b782d49, type: 3}
-    initialSize: 1
-  - tag: TestPrefab3
-    prefab: {fileID: 2037825780521059516, guid: 2d9ea9282a60ebc41a0cf5c5371730bd, type: 3}
-    initialSize: 1
+  - tag: Scrap1
+    prefab: {fileID: 5343162583103934119, guid: 5f584a390e9fc9c4f91a5ed1f1cec886, type: 3}
+    initialSize: 5
+  - tag: Scrap2
+    prefab: {fileID: 1407957415489668467, guid: 85c069c11b1236a4abed7adc8c11e269, type: 3}
+    initialSize: 5
+  - tag: Scrap3
+    prefab: {fileID: 2226234696440065480, guid: fe2f2ed4ab290704c86896fe893c7638, type: 3}
+    initialSize: 5
+  - tag: HandHeldUI
+    prefab: {fileID: 1801814835272169594, guid: e36a51a57c8cf2143898d06936987e8a, type: 3}
+    initialSize: 5
+  - tag: Rail
+    prefab: {fileID: 4695806705700642523, guid: c8f12ef308e1da14191780b804471408, type: 3}
+    initialSize: 0
+  - tag: MineCart
+    prefab: {fileID: 3960006085021854714, guid: acd03c7402f785c4f8ece7546e2f97ea, type: 3}
+    initialSize: 0
 --- !u!114 &4919032404744649323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,10 +93,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81746b65e9bec2c4099ab807cf3bccc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levels: []
+  levels:
+  - {fileID: 11400000, guid: 3d863e4229aecaf4288d5ce6ded77f69, type: 2}
   currentLevel: {fileID: 0}
   currentLevelIndex: 0
   currentScore: 0
+  previousObjectScore: 0
 --- !u!114 &2239955347208057656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb5cb866aeb1ed48ae779f341428337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monitorTag: 
+  monitorTag: HandHeldUI
   monitorSpawnPoint: {fileID: 0}
 --- !u!114 &8335500609665655060
 MonoBehaviour:
@@ -114,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f019defca4a2b2945be7ae6b0080da57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistance: 1
+  tolerance: 0.005
 --- !u!114 &7038964026860504759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableDisableFlashes:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -164,6 +179,38 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   availableSpawnPoints: []
-  spawnRate: 2
+  spawnRate: 0
   autoStart: 1

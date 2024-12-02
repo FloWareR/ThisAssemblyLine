@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlashingLight : MonoBehaviour
 {
     [SerializeField] private List<GameObject> objectsToControl;
-    [SerializeField] private float flashTime = 1f;
+    [SerializeField] private float flashTime = 0.5f;
 
     private Coroutine controlCoroutine;
     public void StartEnableDisableCycle()

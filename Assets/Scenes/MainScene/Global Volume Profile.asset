@@ -28,7 +28,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   distance:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 70
   baseHeight:
     m_OverrideState: 0
@@ -44,10 +44,10 @@ MonoBehaviour:
     m_Value: 0
   density:
     m_OverrideState: 0
-    m_Value: 0.599
+    m_Value: 0.18
   attenuationDistance:
-    m_OverrideState: 0
-    m_Value: 3
+    m_OverrideState: 1
+    m_Value: 4
   enableMainLightContribution:
     m_OverrideState: 0
     m_Value: 0

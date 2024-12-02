@@ -87,24 +87,37 @@ namespace Environment
                 MineCartController mineCartController = mineCart.GetComponent<MineCartController>();
                 if (mineCartController != null)
                 {
+                    mineCartController.InitializeCart();
                     float despawnTime = mineCartController.CalculateDespawnTime();
-                    StartCoroutine(ReturnMineCartToPool(mineCart, despawnTime));
+                    List<GameObject> _rails = mineCartController._rails;
+
+                    StartCoroutine(ReturnMineCartToPool(mineCart, despawnTime, _rails));
                 }
                 yield return new WaitForSeconds(spawnRate);
             }
         }
 
-        private IEnumerator ReturnMineCartToPool(GameObject mineCart, float despawnTime)
+        private IEnumerator ReturnMineCartToPool(GameObject mineCart, float despawnTime, List<GameObject> _rails)
         {
             yield return new WaitForSeconds(despawnTime);
+
+            // Return the rails to the pool
+            foreach (GameObject rail in _rails)
+            {
+                rail.SetActive(false); // Deactivate before returning to the pool
+                ObjectPoolManager.Instance.ReturnToPool("Rail", rail);
+            }
+
+            // Return the minecart to the pool
+            ObjectPoolManager.Instance.ReturnToPool("MineCart", mineCart);
+
+            // Re-add the spawn point to available list
             var mineCartEntry = spawnedMineCarts.FirstOrDefault(item => item.MineCart == mineCart);
             if (mineCartEntry.MineCart != null)
             {
                 availableSpawnPoints.Add(mineCartEntry.SpawnPoint);
                 spawnedMineCarts.RemoveAll(item => item.MineCart == mineCart);
             }
-            ObjectPoolManager.Instance.ReturnToPool("MineCart", mineCart);
-
         }
     }
 }
