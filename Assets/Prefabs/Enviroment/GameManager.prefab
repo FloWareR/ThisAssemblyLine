@@ -64,10 +64,7 @@ MonoBehaviour:
     initialSize: 5
   - tag: Rail
     prefab: {fileID: 4695806705700642523, guid: c8f12ef308e1da14191780b804471408, type: 3}
-    initialSize: 0
-  - tag: MineCart
-    prefab: {fileID: 3960006085021854714, guid: acd03c7402f785c4f8ece7546e2f97ea, type: 3}
-    initialSize: 0
+    initialSize: 6
 --- !u!114 &4919032404744649323
 MonoBehaviour:
   m_ObjectHideFlags: 0
