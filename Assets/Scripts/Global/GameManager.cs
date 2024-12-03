@@ -24,12 +24,14 @@ namespace Global
 
 
         public int currentLevelIndex = 0;
-        public int currentScore;
-        public int previousObjectScore;
+        public int currentScore = 0;
+        public int previousObjectScore = 0;
         public bool _isLevelActive;
         public float musicVolume = 1f;
         public float levelTimeLeft;
         private ObjectToBuild[] _objectsLeft;
+        private bool _isChangingLevel = false;
+        
         private void Awake()
         {
             if (instance != null && instance != this)
@@ -77,10 +79,19 @@ namespace Global
 
         private IEnumerator NextLevel()
         {
+            if (_isChangingLevel) yield break;
+            _isChangingLevel = true;
+
             _isLevelActive = false;
+            Debug.Log("Level completed! Raising LevelDone event...");
             LevelDone?.Invoke();
+
+            Debug.Log($"Waiting for {timeBetweenRounds} seconds...");
             yield return new WaitForSeconds(timeBetweenRounds);
+
+            Debug.Log("Loading the next level...");
             LoadLevel(currentLevelIndex + 1);
+            _isChangingLevel = false;
         }
         
         private void OnEnable()
@@ -104,8 +115,12 @@ namespace Global
             currentLevel = levels[levelIndex];
             _isLevelActive = true;
             levelTimeLeft = currentLevel.timeLimit;
-            _objectsLeft = currentLevel.objectsToBuild;
-            foreach (var objectToBuild in _objectsLeft)
+            _objectsLeft = currentLevel.objectsToBuild
+                .Select(obj => new ObjectToBuild
+                {
+                    objectData = obj.objectData,
+                    quantity = obj.quantity
+                }).ToArray();            foreach (var objectToBuild in _objectsLeft)
             {
                 Debug.Log($"{objectToBuild.objectData.name}, {objectToBuild.quantity}");
             }

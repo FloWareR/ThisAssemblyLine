@@ -12,6 +12,7 @@ namespace Environment
         [SerializeField] private LayerMask ignore;
         [SerializeField] private Vector3 direction = Vector3.right;
 
+        [SerializeField] private LevelData inBetweenParameters;
         public bool active = true;
         private float _trueSpeed;
         private float _time;
@@ -33,6 +34,17 @@ namespace Environment
         private void OnEnable()
         {
             GameManager.LoadNewLevel += OnLoadNewLevel;
+            GameManager.LevelDone += OnLevelDone;
+
+        }
+        private void OnDisable()
+        {
+            GameManager.LevelDone -= OnLevelDone;
+            GameManager.LoadNewLevel -= OnLoadNewLevel;
+        }
+        private void OnLevelDone()
+        {
+            currentLevel = inBetweenParameters;
         }
 
         private void OnLoadNewLevel(LevelData obj)
@@ -40,10 +52,7 @@ namespace Environment
             StartNewLevel(obj);
         }
 
-        private void OnDisable()
-        {
-            GameManager.LoadNewLevel -= OnLoadNewLevel;
-        }
+
         
         public void StartNewLevel(LevelData newLevel)
         {

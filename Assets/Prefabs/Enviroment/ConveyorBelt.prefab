@@ -128,6 +128,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   direction: {x: 1, y: 0, z: 0}
+  inBetweenParameters: {fileID: 11400000, guid: df2933b07d46bb74397d39cfb24c712f, type: 2}
   active: 1
   currentLevel: {fileID: 0}
 --- !u!65 &6539389225172984040

@@ -1,8 +1,10 @@
+using System;
 using Global;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using ScriptableObjects;
 
 namespace Environment
 {
@@ -11,11 +13,13 @@ namespace Environment
         [Header("References")]
         [SerializeField] private TextMeshProUGUI scoreCounter;
         [SerializeField] private TextMeshProUGUI prevObjectCounter;
+        [SerializeField] private TextMeshProUGUI levelCounter;
+
 
         [Header("Audio Clips")]
         [SerializeField] private List<ScoreSoundPair> scoreSoundPairs;
         private Dictionary<int, AudioClip> _scoreAudioClipDict;
-
+        
         private void Awake()
         {
             _scoreAudioClipDict = new Dictionary<int, AudioClip>();
@@ -23,9 +27,26 @@ namespace Environment
             {
                 _scoreAudioClipDict[pair.scoreThreshold] = pair.audioClip;
             }
-            scoreCounter.text = GameManager.instance.currentScore.ToString();
-            prevObjectCounter.text = GameManager.instance.previousObjectScore.ToString();
         }
+        
+        private void OnEnable()
+        {
+            GameManager.LoadNewLevel += OnLoadNewLevel;
+        }
+        
+        private void OnDisable()
+        {
+            GameManager.LoadNewLevel -= OnLoadNewLevel;
+        }
+        
+
+        private void OnLoadNewLevel(LevelData obj)
+        {
+            Debug.Log(obj.levelNumber);
+            levelCounter.text = (obj.levelNumber).ToString();
+        }
+
+
 
         public void UpdateScores()
         {

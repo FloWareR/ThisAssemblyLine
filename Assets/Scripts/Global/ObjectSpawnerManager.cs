@@ -23,8 +23,8 @@ namespace Global
         }
 
         private void PauseSpawn()
-        {
-            _inGame = false;
+        { 
+            StopAllCoroutines();
         }
 
         private void OnLoadNewLevel(LevelData obj)
