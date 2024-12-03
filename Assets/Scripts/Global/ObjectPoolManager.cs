@@ -52,7 +52,7 @@ namespace Global
             objectToSpawn.transform.rotation = spawnRotation;
 
             var rigidbody = objectToSpawn.GetComponent<Rigidbody>();
-            if (rigidbody != null)
+            if (rigidbody != null && !rigidbody.isKinematic)
             {
                 rigidbody.linearVelocity = Vector3.zero;
                 rigidbody.angularVelocity = Vector3.zero;

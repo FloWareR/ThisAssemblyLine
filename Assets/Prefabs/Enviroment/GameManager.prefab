@@ -96,6 +96,8 @@ MonoBehaviour:
   currentLevelIndex: 0
   currentScore: 0
   previousObjectScore: 0
+  musicVolume: 1
+  backgroundMusic: []
 --- !u!114 &2239955347208057656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,8 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f019defca4a2b2945be7ae6b0080da57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 1
-  tolerance: 0.005
 --- !u!114 &7038964026860504759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  MinecartSpawnPoints:
+  minecartSpawnPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -826,5 +826,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1871baa9cb92c7448a846dcfc2f7b116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreCounter: {fileID: 0}
-  prevObjectCounter: {fileID: 0}
+  scoreCounter: {fileID: 2498974721628245438}
+  prevObjectCounter: {fileID: 7668340032736258354}
+  scoreSoundPairs:
+  - scoreThreshold: 75
+    audioClip: {fileID: 8300000, guid: bbe9152e331305a4aa488106dcc30552, type: 3}
+  - scoreThreshold: 45
+    audioClip: {fileID: 8300000, guid: d06f75b69fac76a4a8914b33b3e20282, type: 3}
+  - scoreThreshold: 10
+    audioClip: {fileID: 8300000, guid: ed0861087382a6040bb5b903a236ae94, type: 3}

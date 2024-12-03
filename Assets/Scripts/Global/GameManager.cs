@@ -2,24 +2,25 @@ using System;
 using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
-using Environment; 
+using Environment;
 
 namespace Global
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private AudioClip[] backgroundMusic;
         public static GameManager instance { get; private set; }
-
         public List<LevelData> levels;
         public LevelData currentLevel;
-        public int currentLevelIndex = 0;
         private ObjectSpawnerManager _objectSpawnerManager;
         private ScoreBoardController _scoreBoardController;
         public static event Action<LevelData> LoadNewLevel;
 
+        public int currentLevelIndex = 0;
         public int currentScore;
         public int previousObjectScore;
         private bool _isLevelActive;
+        public float musicVolume = 1f;
         
 
         private void Awake()
@@ -29,7 +30,6 @@ namespace Global
                 Destroy(gameObject); 
                 return;
             }
-
             instance = this;
             DontDestroyOnLoad(gameObject); 
 
@@ -41,7 +41,10 @@ namespace Global
         private void Start()
         {
             if (levels.Count > 0)
+            {
                 LoadLevel(currentLevelIndex);
+                MusicChannel.PlayerSoundTrack(backgroundMusic, musicVolume);
+            }
             else
                 Debug.LogError("No levels assigned to the GameManager!");
         }
