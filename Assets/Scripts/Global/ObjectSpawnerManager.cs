@@ -19,10 +19,17 @@ namespace Global
         private void OnEnable()
         {
             GameManager.LoadNewLevel += OnLoadNewLevel;
+            GameManager.LevelDone += PauseSpawn;
+        }
+
+        private void PauseSpawn()
+        {
+            _inGame = false;
         }
 
         private void OnLoadNewLevel(LevelData obj)
         {
+            _inGame = true;
             InitializeParts(obj);
         }
 

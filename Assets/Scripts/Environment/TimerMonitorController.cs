@@ -14,6 +14,12 @@ namespace Environment
         private void OnEnable()
         {
             GameManager.LoadNewLevel += StartTimer;
+            GameManager.LevelDone += PauseSpawn;
+        }
+
+        private void PauseSpawn()
+        {
+            StopAllCoroutines();        
         }
 
         public void UpdateText(int timeLeft)

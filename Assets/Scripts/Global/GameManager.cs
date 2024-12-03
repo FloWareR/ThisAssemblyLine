@@ -11,7 +11,7 @@ namespace Global
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private AudioClip[] backgroundMusic;
-        [SerializeField] private float timeBetweenRounds;
+        [SerializeField] private float timeBetweenRounds = 10f;
         public static GameManager instance { get; private set; }
         public List<LevelData> levels;
         public LevelData currentLevel;
@@ -20,11 +20,13 @@ namespace Global
         private TimerMonitorController _timerMonitorController;
         public static event Action<LevelData> LoadNewLevel;
         public static event Action LevelTimeUp;
+        public static event Action LevelDone;
+
 
         public int currentLevelIndex = 0;
         public int currentScore;
         public int previousObjectScore;
-        private bool _isLevelActive;
+        public bool _isLevelActive;
         public float musicVolume = 1f;
         public float levelTimeLeft;
         private ObjectToBuild[] _objectsLeft;
@@ -76,6 +78,7 @@ namespace Global
         private IEnumerator NextLevel()
         {
             _isLevelActive = false;
+            LevelDone?.Invoke();
             yield return new WaitForSeconds(timeBetweenRounds);
             LoadLevel(currentLevelIndex + 1);
         }
