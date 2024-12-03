@@ -1587,6 +1587,10 @@ PrefabInstance:
       propertyPath: 'minecartSpawnPoints.Array.data[63]'
       value: 
       objectReference: {fileID: 1864013534}
+    - target: {fileID: 8335500609665655060, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
+      propertyPath: tolerance
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using Global;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Environment
 {
     public class EnvironmentManager : MonoBehaviour
     {
         [SerializeField] private FlashingLight[] enableDisableFlashes;
-        [SerializeField] private Transform[] MinecartSpawnPoints;
+        [FormerlySerializedAs("MinecartSpawnPoints")] [SerializeField] private Transform[] minecartSpawnPoints;
         [SerializeField] private List<Transform> availableSpawnPoints;
         [SerializeField] private float spawnRate = 5f;
         [SerializeField] private bool autoStart = true;
 
-        private List<(GameObject MineCart, Transform SpawnPoint)> spawnedMineCarts = new List<(GameObject, Transform)>();
+        private readonly List<(GameObject MineCart, Transform SpawnPoint)> _spawnedMineCarts = new List<(GameObject, Transform)>();
 
         private void Start()
         {
-            availableSpawnPoints = new List<Transform>(MinecartSpawnPoints);
+            availableSpawnPoints = new List<Transform>(minecartSpawnPoints);
 
             if (autoStart)
             {
@@ -40,7 +41,7 @@ namespace Environment
                 Debug.LogWarning("EnableDisableFlashes reference is missing.");
             }
 
-            if (MinecartSpawnPoints != null)
+            if (minecartSpawnPoints != null)
             {
                 StartCoroutine(SpawnMineCarts());
             }
@@ -76,22 +77,22 @@ namespace Environment
             while (true)
             {
                 yield return new WaitUntil(() => availableSpawnPoints.Count > 0);
-                int randomIndex = Random.Range(0, availableSpawnPoints.Count);
-                Transform spawnPosition = availableSpawnPoints[randomIndex];
+                var randomIndex = Random.Range(0, availableSpawnPoints.Count);
+                var spawnPosition = availableSpawnPoints[randomIndex];
 
                 var mineCart = ObjectPoolManager.Instance.SpawnFromPool("MineCart", spawnPosition.position, spawnPosition.rotation);
-                spawnedMineCarts.Add((mineCart, spawnPosition));
+                _spawnedMineCarts.Add((mineCart, spawnPosition));
 
                 availableSpawnPoints.Remove(spawnPosition);
 
-                MineCartController mineCartController = mineCart.GetComponent<MineCartController>();
-                if (mineCartController != null)
+                var mineCartController = mineCart.GetComponent<MineCartController>();
+                if (mineCartController)
                 {
                     mineCartController.InitializeCart();
-                    float despawnTime = mineCartController.CalculateDespawnTime();
-                    List<GameObject> _rails = mineCartController._rails;
+                    var despawnTime = mineCartController.CalculateDespawnTime();
+                    var rails = mineCartController._rails;
 
-                    StartCoroutine(ReturnMineCartToPool(mineCart, despawnTime, _rails));
+                    StartCoroutine(ReturnMineCartToPool(mineCart, despawnTime, rails));
                 }
                 yield return new WaitForSeconds(spawnRate);
             }
@@ -101,22 +102,19 @@ namespace Environment
         {
             yield return new WaitForSeconds(despawnTime);
 
-            // Return the rails to the pool
             foreach (GameObject rail in _rails)
             {
-                rail.SetActive(false); // Deactivate before returning to the pool
+                rail.SetActive(false); 
                 ObjectPoolManager.Instance.ReturnToPool("Rail", rail);
             }
 
-            // Return the minecart to the pool
             ObjectPoolManager.Instance.ReturnToPool("MineCart", mineCart);
 
-            // Re-add the spawn point to available list
-            var mineCartEntry = spawnedMineCarts.FirstOrDefault(item => item.MineCart == mineCart);
-            if (mineCartEntry.MineCart != null)
+            var mineCartEntry = _spawnedMineCarts.FirstOrDefault(item => item.MineCart == mineCart);
+            if (!mineCartEntry.MineCart) yield break;
             {
                 availableSpawnPoints.Add(mineCartEntry.SpawnPoint);
-                spawnedMineCarts.RemoveAll(item => item.MineCart == mineCart);
+                _spawnedMineCarts.RemoveAll(item => item.MineCart == mineCart);
             }
         }
     }

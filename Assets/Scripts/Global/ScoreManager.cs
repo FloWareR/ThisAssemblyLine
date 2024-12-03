@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,8 +9,6 @@ namespace Global
     {
         public static ScoreManager Instance;
         
-        [SerializeField] private float maxDistance = 1.0f; 
-        [SerializeField ]private float tolerance = 0.005f;  
         private void Awake()
         {
             if (Instance == null) Instance = this;
@@ -21,7 +20,7 @@ namespace Global
             var prefabChildren = GetChildren(prefabObject.transform);
             var playerChildren = GetChildren(playerObject.transform);
 
-            if (!AreSnapPointsMatching(prefabChildren, playerChildren))
+            if (!AreSnapPointsMatching(prefabObject, playerObject))
             {
                 return -50f;
             }
@@ -43,13 +42,7 @@ namespace Global
                     snapPointsList.Add(child.gameObject);
                 }
 
-                foreach (Transform miniChild in child)
-                {
-                    if(miniChild.CompareTag($"SnapPoint"))
-                    {
-                        snapPointsList.Add(miniChild.gameObject);
-                    }
-                }
+                snapPointsList.AddRange(from Transform miniChild in child where miniChild.CompareTag($"SnapPoint") select miniChild.gameObject);
             }
 
             return snapPointsList;
@@ -66,33 +59,31 @@ namespace Global
         
         private float CalculateScore(float prefabDistance, float playerDistance)
         {
-            if (playerDistance >= prefabDistance + maxDistance)
-            {
-                return 0f;
-            }
-
-            var difference = Mathf.Abs(prefabDistance - playerDistance);
-
-            if (difference <= tolerance)
-            {
-                return 100f; 
-            }
-
-            var maxDifference = maxDistance - tolerance;
-            var score = 100f * (1f - (difference / maxDifference));
-            return Mathf.Clamp(score, 0f, 100f);
+            var score = Mathf.Abs((playerDistance / prefabDistance) - 100);
+            if (score > 98.5f) score = 100;
+            if (score < 65f) score *= .5f;
+            
+            return score;
         }
+
         
-        private bool AreSnapPointsMatching(List<GameObject> prefabChildren, List<GameObject> playerChildren)
+        
+        private bool AreSnapPointsMatching(GameObject prefabObject, GameObject playerObject)
         {
+            var prefabChildren = (from Transform child in prefabObject.transform select child.gameObject).ToList();
+            var playerChildren = (from Transform child in playerObject.transform select child.gameObject).ToList();
+
             if (prefabChildren.Count != playerChildren.Count)
                 return false;
 
             var prefabNames = new HashSet<string>(prefabChildren.ConvertAll(child => child.name));
-            var playerNames = new HashSet<string>(playerChildren.ConvertAll(child => child.name));
-
+            var playerNames = new HashSet<string>(playerChildren.ConvertAll(child => child.name.Replace("(Clone)", "").Trim())
+            );
+            
             return prefabNames.SetEquals(playerNames);
         }
+        
+
 
     }
 }
