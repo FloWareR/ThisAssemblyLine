@@ -21,7 +21,6 @@ public class MusicChannel : ScriptableObject
     public static void PlayerSoundTrack(AudioClip[] clips, float volume)
     {
         var randClip = Random.Range(0, clips.Length);
-        Debug.Log(randClip);
         var audio = Instantiate(Instance.musicObject);
         audio.volume = volume;
         audio.clip = clips[randClip];

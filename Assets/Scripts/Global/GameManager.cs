@@ -15,13 +15,15 @@ namespace Global
         private ObjectSpawnerManager _objectSpawnerManager;
         private ScoreBoardController _scoreBoardController;
         public static event Action<LevelData> LoadNewLevel;
+        public static event Action LevelTimeUp;
 
         public int currentLevelIndex = 0;
         public int currentScore;
         public int previousObjectScore;
         private bool _isLevelActive;
         public float musicVolume = 1f;
-        
+
+        private float _levelTimeLeft;
 
         private void Awake()
         {
@@ -40,13 +42,15 @@ namespace Global
 
         private void Start()
         {
-            if (levels.Count > 0)
-            {
-                LoadLevel(currentLevelIndex);
-                MusicChannel.PlayerSoundTrack(backgroundMusic, musicVolume);
-            }
-            else
-                Debug.LogError("No levels assigned to the GameManager!");
+            if (levels.Count <= 0) return;
+            LoadLevel(currentLevelIndex);
+            MusicChannel.PlayerSoundTrack(backgroundMusic, musicVolume);
+        }
+
+        private void Update()
+        {
+            if(!_isLevelActive) return;
+            LevelTimer();
         }
 
         private void OnEnable()
@@ -69,6 +73,7 @@ namespace Global
             currentLevelIndex = levelIndex;
             currentLevel = levels[levelIndex];
             _isLevelActive = true;
+            _levelTimeLeft = currentLevel.timeLimit;
             LoadNewLevel?.Invoke(currentLevel);
         }
 
@@ -83,5 +88,15 @@ namespace Global
             _scoreBoardController.UpdateScores();
             Destroy(playerObject);
         }
+
+        private void LevelTimer()
+        {
+            _levelTimeLeft -= Time.deltaTime;
+            Debug.Log(_levelTimeLeft);
+            if (!(_levelTimeLeft <= 0)) return;
+            LevelTimeUp?.Invoke();
+            _isLevelActive = false;
+        }
+        
     }
 }
