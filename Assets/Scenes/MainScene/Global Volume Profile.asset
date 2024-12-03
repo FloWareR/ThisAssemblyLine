@@ -47,13 +47,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.18
   attenuationDistance:
-<<<<<<< HEAD
     m_OverrideState: 1
     m_Value: 3.44
-=======
-    m_OverrideState: 0
-    m_Value: 4
->>>>>>> 3dabbf73750f896ca06427e6664abbd8cf02b964
   enableMainLightContribution:
     m_OverrideState: 0
     m_Value: 0
