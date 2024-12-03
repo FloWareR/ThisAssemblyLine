@@ -12,7 +12,7 @@ namespace Environment
         [SerializeField] private TextMeshProUGUI scoreCounter;
         [SerializeField] private TextMeshProUGUI prevObjectCounter;
 
-        [Header("Audio Clips")] 
+        [Header("Audio Clips")]
         [SerializeField] private List<ScoreSoundPair> scoreSoundPairs;
         private Dictionary<int, AudioClip> _scoreAudioClipDict;
 
@@ -54,6 +54,6 @@ namespace Environment
     public class ScoreSoundPair
     {
         public int scoreThreshold;
-        public AudioClip audioClip; 
+        public AudioClip audioClip;
     }
 }
