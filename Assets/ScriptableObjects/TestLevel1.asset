@@ -16,7 +16,7 @@ MonoBehaviour:
   timeLimit: 60
   objectsToBuild:
   - objectData: {fileID: 11400000, guid: caf3d91c8376e8d4983ebb5fedd46d01, type: 2}
-    quantity: 2
+    quantity: 0
   conveyorSpeed: 0.5
   requiredPartProbability: 1
   spawnInterval: 1.5

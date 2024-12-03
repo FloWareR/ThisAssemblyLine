@@ -1,15 +1,17 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ScriptableObjects;
 using UnityEngine;
 using Environment;
-using UnityEngine.Serialization;
 
 namespace Global
 {
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private AudioClip[] backgroundMusic;
+        [SerializeField] private float timeBetweenRounds;
         public static GameManager instance { get; private set; }
         public List<LevelData> levels;
         public LevelData currentLevel;
@@ -24,9 +26,8 @@ namespace Global
         public int previousObjectScore;
         private bool _isLevelActive;
         public float musicVolume = 1f;
-
         public float levelTimeLeft;
-
+        private ObjectToBuild[] _objectsLeft;
         private void Awake()
         {
             if (instance != null && instance != this)
@@ -39,7 +40,7 @@ namespace Global
 
             _scoreBoardController = FindAnyObjectByType<ScoreBoardController>();
             _timerMonitorController = FindAnyObjectByType<TimerMonitorController>();
-
+            
         }
 
         private void Start()
@@ -55,6 +56,30 @@ namespace Global
             LevelTimer();
         }
 
+        private void EvaluateObjects()
+        {
+            var allObjectsBuilt = true;
+            foreach (var objectToBuild in _objectsLeft)
+            {
+                if (objectToBuild.quantity != 0)
+                {
+                    allObjectsBuilt = false;
+                }
+            }
+
+            if (allObjectsBuilt)
+            {
+                StartCoroutine(NextLevel());
+            }
+        }
+
+        private IEnumerator NextLevel()
+        {
+            _isLevelActive = false;
+            yield return new WaitForSeconds(timeBetweenRounds);
+            LoadLevel(currentLevelIndex + 1);
+        }
+        
         private void OnEnable()
         {
             DeliveryBoxController.EvaluateObject += OnEvaluateObject;
@@ -76,20 +101,36 @@ namespace Global
             currentLevel = levels[levelIndex];
             _isLevelActive = true;
             levelTimeLeft = currentLevel.timeLimit;
+            _objectsLeft = currentLevel.objectsToBuild;
+            foreach (var objectToBuild in _objectsLeft)
+            {
+                Debug.Log($"{objectToBuild.objectData.name}, {objectToBuild.quantity}");
+            }
             LoadNewLevel?.Invoke(currentLevel);
         }
 
         private void OnEvaluateObject(GameObject playerObject)
         {
+            string playerGameObjectName;
             foreach (var prefabObject in currentLevel.objectsToBuild)
             { 
                 previousObjectScore = (int)ScoreManager.Instance.CompareObjects(prefabObject.objectData.objectPrefab, 
                     playerObject);
                 currentScore += previousObjectScore;
+                playerGameObjectName = ScoreManager.Instance.ObjectCreated(prefabObject.objectData.objectPrefab, playerObject);
+                foreach (var objectToBuild in _objectsLeft)
+                {
+                    if (objectToBuild.objectData.objectPrefab.name != playerGameObjectName) continue;
+                    objectToBuild.quantity = Mathf.Max(0, objectToBuild.quantity - 1); 
+                    break;
+                }
             }
+
             _scoreBoardController.UpdateScores();
+            EvaluateObjects();
             Destroy(playerObject);
         }
+
 
         private void LevelTimer()
         {

@@ -29,8 +29,21 @@ namespace Global
 
             return CalculateScore(prefabDistance, playerDistance);
         }
+        
+        public string ObjectCreated(GameObject prefabObject, GameObject playerObject)
+        {
+            var prefabChildren = (from Transform child in prefabObject.transform select child.gameObject).ToList();
+            var playerChildren = (from Transform child in playerObject.transform select child.gameObject).ToList();
 
+            if (prefabChildren.Count != playerChildren.Count)
+                return null;
 
+            var prefabNames = new HashSet<string>(prefabChildren.ConvertAll(child => child.name));
+            var playerNames = new HashSet<string>(playerChildren.ConvertAll(child => child.name.Replace("(Clone)", "").Trim())
+            );
+            return prefabNames.SetEquals(playerNames) ? prefabObject.name : null;
+        }
+        
         private List<GameObject> GetChildren(Transform parent)
         {
             var snapPointsList = new List<GameObject>();

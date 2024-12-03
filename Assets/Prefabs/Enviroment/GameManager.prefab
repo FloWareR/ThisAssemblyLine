@@ -67,7 +67,7 @@ MonoBehaviour:
     initialSize: 6
   - tag: MineCart
     prefab: {fileID: 3960006085021854714, guid: acd03c7402f785c4f8ece7546e2f97ea, type: 3}
-    initialSize: 10
+    initialSize: 6
 --- !u!114 &4919032404744649323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,14 +93,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81746b65e9bec2c4099ab807cf3bccc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: []
+  backgroundMusic:
+  - {fileID: 8300000, guid: 9f6a89086390e2045a9e7a8cc1423037, type: 3}
+  - {fileID: 8300000, guid: 78c79561022c61b4fb67439c46484531, type: 3}
+  - {fileID: 8300000, guid: 74e86dc5e533ba842974627661e9ba4a, type: 3}
+  timeBetweenRounds: 0
   levels:
   - {fileID: 11400000, guid: 3d863e4229aecaf4288d5ce6ded77f69, type: 2}
   currentLevel: {fileID: 0}
   currentLevelIndex: 0
   currentScore: 0
   previousObjectScore: 0
-  musicVolume: 1
+  musicVolume: 0.5
+  levelTimeLeft: 0
 --- !u!114 &2239955347208057656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,12 +139,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4576459660524893483}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c69aed1db652e1547ab56bbe18fdaf28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enableDisableFlashes:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -212,5 +219,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   availableSpawnPoints: []
-  spawnRate: 1
+  spawnRate: 2
   autoStart: 1
