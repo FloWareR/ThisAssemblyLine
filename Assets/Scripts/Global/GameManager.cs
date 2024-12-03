@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
 using Environment;
+using UnityEngine.Serialization;
 
 namespace Global
 {
@@ -12,8 +13,9 @@ namespace Global
         public static GameManager instance { get; private set; }
         public List<LevelData> levels;
         public LevelData currentLevel;
-        private ObjectSpawnerManager _objectSpawnerManager;
+        
         private ScoreBoardController _scoreBoardController;
+        private TimerMonitorController _timerMonitorController;
         public static event Action<LevelData> LoadNewLevel;
         public static event Action LevelTimeUp;
 
@@ -23,7 +25,7 @@ namespace Global
         private bool _isLevelActive;
         public float musicVolume = 1f;
 
-        private float _levelTimeLeft;
+        public float levelTimeLeft;
 
         private void Awake()
         {
@@ -35,8 +37,8 @@ namespace Global
             instance = this;
             DontDestroyOnLoad(gameObject); 
 
-            _objectSpawnerManager = GetComponent<ObjectSpawnerManager>();
             _scoreBoardController = FindAnyObjectByType<ScoreBoardController>();
+            _timerMonitorController = FindAnyObjectByType<TimerMonitorController>();
 
         }
 
@@ -73,7 +75,7 @@ namespace Global
             currentLevelIndex = levelIndex;
             currentLevel = levels[levelIndex];
             _isLevelActive = true;
-            _levelTimeLeft = currentLevel.timeLimit;
+            levelTimeLeft = currentLevel.timeLimit;
             LoadNewLevel?.Invoke(currentLevel);
         }
 
@@ -91,9 +93,8 @@ namespace Global
 
         private void LevelTimer()
         {
-            _levelTimeLeft -= Time.deltaTime;
-            Debug.Log(_levelTimeLeft);
-            if (!(_levelTimeLeft <= 0)) return;
+            levelTimeLeft -= Time.deltaTime;
+            if (!(levelTimeLeft <= 0)) return;
             LevelTimeUp?.Invoke();
             _isLevelActive = false;
         }
