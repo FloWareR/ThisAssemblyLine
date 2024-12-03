@@ -12,7 +12,7 @@ namespace Environment
         [SerializeField] private TextMeshProUGUI scoreCounter;
         [SerializeField] private TextMeshProUGUI prevObjectCounter;
 
-        [Header("Audio Clips")] 
+        [Header("Audio Clips")]
         [SerializeField] private List<ScoreSoundPair> scoreSoundPairs;
         private Dictionary<int, AudioClip> _scoreAudioClipDict;
 
@@ -32,6 +32,7 @@ namespace Environment
             scoreCounter.text = GameManager.instance.currentScore.ToString();
             prevObjectCounter.text = GameManager.instance.previousObjectScore.ToString();
             PlayScoreSound(GameManager.instance.previousObjectScore);
+            gameObject.GetComponent<ScoreBoardLights>().EvaluateScore(GameManager.instance.previousObjectScore);
         }
 
         private void PlayScoreSound(int previousScore)
@@ -54,6 +55,6 @@ namespace Environment
     public class ScoreSoundPair
     {
         public int scoreThreshold;
-        public AudioClip audioClip; 
+        public AudioClip audioClip;
     }
 }
