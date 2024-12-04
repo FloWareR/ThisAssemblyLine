@@ -20,5 +20,4 @@ MonoBehaviour:
   conveyorSpeed: 0.5
   requiredPartProbability: 1
   spawnInterval: 1.5
-  junkParts:
-  - {fileID: 11400000, guid: f6f9b2a25511169408d66e6c1d50601d, type: 2}
+  junkParts: []

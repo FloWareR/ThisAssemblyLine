@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7229626917296964013}
   m_Layer: 10
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Weldable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,6 +161,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 54148e667aa849246b160d4dcd0e0b83, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 54148e667aa849246b160d4dcd0e0b83, type: 3}
+      propertyPath: m_TagString
+      value: Weldable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -302,5 +306,5 @@ MonoBehaviour:
   isWelded: 0
   weldableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   isHeld: 0

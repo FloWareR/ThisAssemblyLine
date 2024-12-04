@@ -48,7 +48,6 @@ namespace Environment
 
         private void OnLoadNewLevel(LevelData obj)
         {
-            Debug.Log(obj.levelNumber);
             levelCounter.text = (obj.levelNumber).ToString();
         }
 

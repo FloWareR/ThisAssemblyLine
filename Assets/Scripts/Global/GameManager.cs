@@ -135,9 +135,14 @@ namespace Global
 
         private void OnEvaluateObject(GameObject playerObject)
         {
-            string playerGameObjectName;
+            string playerGameObjectName = playerObject.name; 
+            ;
             foreach (var prefabObject in currentLevel.objectsToBuild)
             { 
+                if (prefabObject.objectData.objectPrefab.name != playerGameObjectName)
+                {
+                    continue;
+                }
                 previousObjectScore = (int)ScoreManager.Instance.CompareObjects(prefabObject.objectData.objectPrefab, 
                     playerObject);
                 currentScore += previousObjectScore;

@@ -35,9 +35,7 @@ namespace Environment
 
         private void OnLoadNewLevel(LevelData obj)
         {
-            // Clear existing monitors when a new level loads
             ClearMonitors();
-
             foreach (var objectToBuild in obj.objectsToBuild)
             {
                 SpawnMonitor(objectToBuild.objectData.objectImage, objectToBuild.quantity);
@@ -52,11 +50,7 @@ namespace Environment
                 Debug.LogError("No monitor spawn points set!");
                 return;
             }
-
-            // Get the spawn position using the current spawn index, and loop it if needed
             Transform spawnPoint = monitorSpawnPoints[currentSpawnIndex];
-            
-            // Use Object Pooling to spawn the monitor
             GameObject newMonitor = ObjectPoolManager.Instance.SpawnFromPool(
                 monitorTag,
                 spawnPoint.position,

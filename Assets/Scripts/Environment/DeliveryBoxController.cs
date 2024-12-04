@@ -44,7 +44,10 @@ namespace Environment
             foreach (var obj in _objectsInBox)
             {
                 obj.transform.SetParent(combinedObject.transform);
+                combinedObject.name = obj.name.Replace("_A(Clone)", "");
+                combinedObject.name = obj.name.Replace("_B(Clone)", "");
             }
+Debug.Log(combinedObject.name);
             EvaluateObject?.Invoke(combinedObject);
             foreach (var objectUsed in _objectsInBox)
             {
