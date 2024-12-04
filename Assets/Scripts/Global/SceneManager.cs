@@ -1,10 +1,23 @@
-using System;
 using UnityEngine;
 
 namespace Global
 {
     public class SceneManager : MonoBehaviour
     {
+        public static SceneManager Instance { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject); 
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject); 
+        }
+
         public void LoadScene(int sceneNumber)
         {
             if (sceneNumber < 0 || sceneNumber >= UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
@@ -12,7 +25,7 @@ namespace Global
                 Debug.LogError("Invalid scene index. Make sure it's within the build settings range.");
                 return;
             }
-            
+
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneNumber);
         }
 

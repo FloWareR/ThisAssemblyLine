@@ -32,13 +32,16 @@ namespace Environment
         private void OnEnable()
         {
             GameManager.LoadNewLevel += OnLoadNewLevel;
+            GameManager.LevelTimeUp += OnTimeUp;
+            GameManager.LevelDone += OnLevelDone;
         }
         
         private void OnDisable()
         {
             GameManager.LoadNewLevel -= OnLoadNewLevel;
+            GameManager.LevelTimeUp -= OnTimeUp;
+            GameManager.LevelDone -= OnLevelDone;
         }
-        
 
         private void OnLoadNewLevel(LevelData obj)
         {
@@ -46,8 +49,16 @@ namespace Environment
             levelCounter.text = (obj.levelNumber).ToString();
         }
 
-
-
+        private void OnTimeUp()
+        {
+            PlayScoreSound(-100);
+        }
+        
+        private void OnLevelDone()
+        {
+            PlayScoreSound(-200);
+        }
+        
         public void UpdateScores()
         {
             scoreCounter.text = GameManager.instance.currentScore.ToString();

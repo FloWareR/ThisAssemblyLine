@@ -20,6 +20,7 @@ namespace Global
         {
             GameManager.LoadNewLevel += OnLoadNewLevel;
             GameManager.LevelDone += PauseSpawn;
+            GameManager.LevelTimeUp += PauseSpawn;
         }
 
         private void PauseSpawn()
@@ -35,6 +36,7 @@ namespace Global
 
         private void OnDisable()
         {
+            GameManager.LevelDone -= PauseSpawn;
             GameManager.LoadNewLevel -= OnLoadNewLevel;
         }
         

@@ -22,14 +22,18 @@ public class ScoreBoardLights : MonoBehaviour
     {
         GameManager.LevelDone += StartLevelCompletedCycle;
         GameManager.LoadNewLevel += StopLevelCompletedCycle;
+        GameManager.LevelTimeUp += GameOver;
     }
+
 
     private void OnDisable()
     {
         GameManager.LevelDone -= StartLevelCompletedCycle;
         GameManager.LoadNewLevel -= StopLevelCompletedCycle;
-    }
+        GameManager.LevelTimeUp -= GameOver;
 
+    }
+    
     private void StartLevelCompletedCycle()
     {
         StartCycle(LightCycleType.LevelCompleted);
@@ -38,6 +42,12 @@ public class ScoreBoardLights : MonoBehaviour
     private void StopLevelCompletedCycle(LevelData data)
     {
         StopCycle();
+    }
+    
+    private void GameOver()
+    {
+        alertDuration = 10f;
+        StartCycle(LightCycleType.Alert);
     }
 
     public void StartCycle(LightCycleType cycleType)

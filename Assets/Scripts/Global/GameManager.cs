@@ -46,7 +46,16 @@ namespace Global
             _timerMonitorController = FindAnyObjectByType<TimerMonitorController>();
             
         }
-
+        private void OnEnable()
+        {
+            DeliveryBoxController.EvaluateObject += OnEvaluateObject;
+        }
+        
+        private void OnDisable()
+        {
+            DeliveryBoxController.EvaluateObject -= OnEvaluateObject;
+        }
+        
         private void Start()
         {
             if (levels.Count <= 0) return;
@@ -58,7 +67,6 @@ namespace Global
         {
             if (!_isLevelActive) return;
 
-            // Check for R key press
             if (Input.GetKeyDown(KeyCode.R))
             {
                 StartCoroutine(NextLevel());
@@ -99,16 +107,6 @@ namespace Global
             Debug.Log("Loading the next level...");
             LoadLevel(currentLevelIndex + 1);
             _isChangingLevel = false;
-        }
-        
-        private void OnEnable()
-        {
-            DeliveryBoxController.EvaluateObject += OnEvaluateObject;
-        }
-        
-        private void OnDisable()
-        {
-            DeliveryBoxController.EvaluateObject -= OnEvaluateObject;
         }
 
         public void LoadLevel(int levelIndex)
@@ -163,6 +161,35 @@ namespace Global
             if (!(levelTimeLeft <= 0)) return;
             LevelTimeUp?.Invoke();
             _isLevelActive = false;
+            SavePlayerScore(currentScore);
+            UpdateHighScore(currentScore);
+
+        }
+        
+        private void SavePlayerScore(int score)
+        {
+            PlayerPrefs.SetInt("PlayerScore", score);
+            PlayerPrefs.Save(); 
+            Debug.Log($"Player score saved: {score}");
+        }
+
+        public int GetPlayerScore()
+        {
+            return PlayerPrefs.GetInt("PlayerScore", 0); 
+        }
+        
+        private void UpdateHighScore(int score)
+        {
+            var highScore = GetHighScore();
+            if (score <= highScore) return;
+            PlayerPrefs.SetInt("HighScore", score);
+            PlayerPrefs.Save();
+            Debug.Log($"New high score: {score}");
+        }
+        
+        public int GetHighScore()
+        {
+            return PlayerPrefs.GetInt("HighScore", 0); 
         }
         
     }
