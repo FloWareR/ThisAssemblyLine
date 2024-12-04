@@ -16,6 +16,12 @@ namespace Environment
             GameManager.LoadNewLevel += StartTimer;
             GameManager.LevelDone += PauseSpawn;
         }
+        
+        private void OnDisable()
+        {
+            GameManager.LoadNewLevel -= StartTimer;
+            GameManager.LevelDone -= PauseSpawn;
+        }
 
         private void PauseSpawn()
         {

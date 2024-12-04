@@ -38,6 +38,8 @@ namespace Global
         {
             GameManager.LevelDone -= PauseSpawn;
             GameManager.LoadNewLevel -= OnLoadNewLevel;
+            GameManager.LevelTimeUp -= PauseSpawn;
+
         }
         
         public void InitializeParts(LevelData data)

@@ -39,9 +39,8 @@ namespace Global
                 Destroy(gameObject); 
                 return;
             }
+            
             instance = this;
-            DontDestroyOnLoad(gameObject); 
-
             _scoreBoardController = FindAnyObjectByType<ScoreBoardController>();
             _timerMonitorController = FindAnyObjectByType<TimerMonitorController>();
             
@@ -54,6 +53,7 @@ namespace Global
         private void OnDisable()
         {
             DeliveryBoxController.EvaluateObject -= OnEvaluateObject;
+            instance = null;
         }
         
         private void Start()

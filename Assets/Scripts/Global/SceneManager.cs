@@ -6,7 +6,6 @@ namespace Global
     public class SceneManager : MonoBehaviour
     {
         public static SceneManager Instance { get; private set; }
-        public Animator transition;
 
         private void Awake()
         {
@@ -26,6 +25,7 @@ namespace Global
             {
                 Debug.LogError("Invalid scene index. Make sure it's within the build settings range.");
                 return;
+                
             }
 
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneNumber);
@@ -39,7 +39,7 @@ namespace Global
                 return;
             }
 
-            StartCoroutine(SceneTransition(sceneName));
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
 
         public void ReloadCurrentScene()
@@ -53,12 +53,6 @@ namespace Global
             Debug.Log("Quitting application...");
             Application.Quit();
         }
-
-        public IEnumerator SceneTransition(string sceneName)
-        {
-            transition.SetTrigger("Start");
-            yield return new WaitForSeconds(1f);
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-        }
+        
     }
 }
