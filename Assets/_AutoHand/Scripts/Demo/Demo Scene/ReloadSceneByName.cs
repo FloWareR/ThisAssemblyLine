@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using SceneManager = Global.SceneManager;
+using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class ReloadSceneByName : MonoBehaviour
 {

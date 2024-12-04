@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using SceneManager = Global.SceneManager;
+using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace Autohand.Demo{
     public class ButtonDemoRespawn : MonoBehaviour{
