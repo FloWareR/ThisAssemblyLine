@@ -56,7 +56,14 @@ namespace Global
 
         private void Update()
         {
-            if(!_isLevelActive) return;
+            if (!_isLevelActive) return;
+
+            // Check for R key press
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                StartCoroutine(NextLevel());
+            }
+
             LevelTimer();
         }
 

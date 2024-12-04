@@ -665,6 +665,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 451273249577135989, guid: 305118f5f61784b48b4ccb5d023bc403, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.678614
+      objectReference: {fileID: 0}
     - target: {fileID: 2012214934663724733, guid: 305118f5f61784b48b4ccb5d023bc403, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -846,13 +850,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1195953859350152228, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
+      propertyPath: timeBetweenRounds
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195953859350152228, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
       propertyPath: 'levels.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: ab34caee874210d49aae823aed09b29d, type: 2}
+      objectReference: {fileID: 11400000, guid: 3d863e4229aecaf4288d5ce6ded77f69, type: 2}
     - target: {fileID: 1195953859350152228, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
       propertyPath: 'levels.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 3d863e4229aecaf4288d5ce6ded77f69, type: 2}
+      objectReference: {fileID: 11400000, guid: ab34caee874210d49aae823aed09b29d, type: 2}
     - target: {fileID: 2239955347208057656, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
       propertyPath: monitorSpawnPoint
       value: 

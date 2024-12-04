@@ -32,11 +32,12 @@ public class ScoreBoardLights : MonoBehaviour
 
     private void StartLevelCompletedCycle()
     {
-        StopCycle();
+        StartCycle(LightCycleType.LevelCompleted);
+
     }
     private void StopLevelCompletedCycle(LevelData data)
     {
-        StartCycle(LightCycleType.LevelCompleted);
+        StopCycle();
     }
 
     public void StartCycle(LightCycleType cycleType)
@@ -83,7 +84,7 @@ public class ScoreBoardLights : MonoBehaviour
                 }
 
                 Light lightColor = light.GetComponent<Light>();
-                lightColor.color = new Color(0, 150, 255);
+                lightColor.color = Color.cyan;
                 light.SetActive(true);
                 lightLimit += 1;
             }

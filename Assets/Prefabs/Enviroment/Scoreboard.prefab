@@ -1576,9 +1576,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 312408fc42340784fba6c0d659a829a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5834654958069626174}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 312408fc42340784fba6c0d659a829a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1167417511484098019}
   m_SourcePrefab: {fileID: 100100000, guid: 312408fc42340784fba6c0d659a829a0, type: 3}
 --- !u!4 &5893618514277180678 stripped
 Transform:
@@ -1630,31 +1627,4 @@ MonoBehaviour:
   warningDuration: 2
   alertDuration: 2
   alertLightSpeed: 4
---- !u!114 &1167417511484098019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6521641605690589116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55fcea6e75d7b534c8d616873f7c824f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightsToControl:
-  - {fileID: 5542250049611661116}
-  - {fileID: 7342723934216844294}
-  - {fileID: 1482797544500859302}
-  - {fileID: 7841333601113741079}
-  scoreLightCoroutines:
-  - scoreThreshold: 70
-    cycleType: 0
-  - scoreThreshold: 10
-    cycleType: 1
-  - scoreThreshold: -50
-    cycleType: 2
-  goodDuration: 2
-  warningDuration: 2
-  alertDuration: 2
-  alertLightSpeed: 4
+  LevelCompletedLightFlashTime: 1

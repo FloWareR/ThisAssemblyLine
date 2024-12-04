@@ -12,13 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbb74590a71d9242ad0c119780e8fa0, type: 3}
   m_Name: _InbetweenParameters
   m_EditorClassIdentifier: 
-  levelNumber: 1
-  timeLimit: 60
-  objectsToBuild:
-  - objectData: {fileID: 11400000, guid: caf3d91c8376e8d4983ebb5fedd46d01, type: 2}
-    quantity: 1
-  conveyorSpeed: 0.5
-  requiredPartProbability: 1
-  spawnInterval: 1.5
-  junkParts:
-  - {fileID: 11400000, guid: f6f9b2a25511169408d66e6c1d50601d, type: 2}
+  levelNumber: 0
+  timeLimit: 0
+  objectsToBuild: []
+  conveyorSpeed: 2.25
+  requiredPartProbability: 0
+  spawnInterval: 0
+  junkParts: []
