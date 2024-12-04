@@ -84,7 +84,7 @@ public class ScoreBoardLights : MonoBehaviour
                 }
 
                 Light lightColor = light.GetComponent<Light>();
-                lightColor.color = Color.cyan;
+                lightColor.color = new Color(0f / 255f, 150f / 255f, 255f / 255f);
                 light.SetActive(true);
                 lightLimit += 1;
             }
@@ -105,6 +105,8 @@ public class ScoreBoardLights : MonoBehaviour
 
                 lightLimit += 1;
             }
+
+            yield return new WaitForSeconds(LevelCompletedLightFlashTime);
 
             yield return null;
         }
