@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Global;
+using System;
+using ScriptableObjects;
 
 public class ScoreBoardLights : MonoBehaviour
 {
@@ -11,8 +14,30 @@ public class ScoreBoardLights : MonoBehaviour
     [SerializeField] public float warningDuration = 2f;
     [SerializeField] public float alertDuration = 2f;
     [SerializeField] public float alertLightSpeed = 4f;
+    [SerializeField] public float LevelCompletedLightFlashTime = 1f;
 
     private Coroutine controlCoroutine;
+
+    private void OnEnable()
+    {
+        GameManager.LevelDone += StartLevelCompletedCycle;
+        GameManager.LoadNewLevel += StopLevelCompletedCycle;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.LevelDone -= StartLevelCompletedCycle;
+        GameManager.LoadNewLevel -= StopLevelCompletedCycle;
+    }
+
+    private void StartLevelCompletedCycle()
+    {
+        StopCycle();
+    }
+    private void StopLevelCompletedCycle(LevelData data)
+    {
+        StartCycle(LightCycleType.LevelCompleted);
+    }
 
     public void StartCycle(LightCycleType cycleType)
     {
@@ -28,7 +53,10 @@ public class ScoreBoardLights : MonoBehaviour
                 controlCoroutine = StartCoroutine(LightWarning());
                 break;
             case LightCycleType.Alert:
-                controlCoroutine = StartCoroutine(LightAlertLoop());
+                controlCoroutine = StartCoroutine(LightAlert());
+                break;
+            case LightCycleType.LevelCompleted:
+                controlCoroutine = StartCoroutine(LightLevelCompleted());
                 break;
         }
     }
@@ -39,6 +67,45 @@ public class ScoreBoardLights : MonoBehaviour
         {
             StopCoroutine(controlCoroutine);
             controlCoroutine = null;
+        }
+    }
+    private IEnumerator LightLevelCompleted()
+    {
+        int lightLimit = 0;
+        while (true)
+        {
+            foreach (GameObject light in lightsToControl)
+            {
+                if (lightLimit > 1)
+                {
+                    lightLimit = 0;
+                    break;
+                }
+
+                Light lightColor = light.GetComponent<Light>();
+                lightColor.color = new Color(0, 150, 255);
+                light.SetActive(true);
+                lightLimit += 1;
+            }
+
+            yield return new WaitForSeconds(LevelCompletedLightFlashTime);
+
+            foreach (GameObject light in lightsToControl)
+            {
+                if (lightLimit > 1)
+                {
+                    lightLimit = 0;
+                    break;
+                }
+
+                light.SetActive(false);
+                Light lightColor = light.GetComponent<Light>();
+                lightColor.color = Color.white;
+
+                lightLimit += 1;
+            }
+
+            yield return null;
         }
     }
 
@@ -60,7 +127,7 @@ public class ScoreBoardLights : MonoBehaviour
         StopCycle();
     }
 
-    private IEnumerator LightAlertLoop()
+    private IEnumerator LightAlert()
     {
         StartCoroutine(AlertCycle());
         while (true)
@@ -129,5 +196,6 @@ public enum LightCycleType
 {
     Good,
     Warning,
-    Alert
+    Alert,
+    LevelCompleted
 }
