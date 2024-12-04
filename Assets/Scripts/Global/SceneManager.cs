@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Global
@@ -5,17 +6,18 @@ namespace Global
     public class SceneManager : MonoBehaviour
     {
         public static SceneManager Instance { get; private set; }
+        public Animator transition;
 
         private void Awake()
         {
             if (Instance != null && Instance != this)
             {
-                Destroy(gameObject); 
+                Destroy(gameObject);
                 return;
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
         }
 
         public void LoadScene(int sceneNumber)
@@ -37,7 +39,7 @@ namespace Global
                 return;
             }
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            StartCoroutine(SceneTransition(sceneName));
         }
 
         public void ReloadCurrentScene()
@@ -50,6 +52,13 @@ namespace Global
         {
             Debug.Log("Quitting application...");
             Application.Quit();
+        }
+
+        public IEnumerator SceneTransition(string sceneName)
+        {
+            transition.SetTrigger("Start");
+            yield return new WaitForSeconds(1f);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
     }
 }
