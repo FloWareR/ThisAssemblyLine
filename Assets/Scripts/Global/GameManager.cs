@@ -19,6 +19,7 @@ namespace Global
         
         private ScoreBoardController _scoreBoardController;
         private TimerMonitorController _timerMonitorController;
+        private DeliveryBoxController _deliveryBoxController;
         public static event Action<LevelData> LoadNewLevel;
         public static event Action LevelTimeUp;
         public static event Action LevelDone;
@@ -45,7 +46,7 @@ namespace Global
             instance = this;
             _scoreBoardController = FindAnyObjectByType<ScoreBoardController>();
             _timerMonitorController = FindAnyObjectByType<TimerMonitorController>();
-            
+            _deliveryBoxController = FindAnyObjectByType<DeliveryBoxController>(); 
         }
         private void OnEnable()
         {
@@ -71,7 +72,7 @@ namespace Global
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                StartCoroutine(NextLevel());
+                _deliveryBoxController.CombineAndSendToScoreManager();
             }
 
             LevelTimer();

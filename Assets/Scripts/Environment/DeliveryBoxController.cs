@@ -34,7 +34,7 @@ namespace Environment
             }
         }
 
-        private void CombineAndSendToScoreManager()
+        public void CombineAndSendToScoreManager()
         {
             if (_objectsInBox.Count == 0)
             {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level7
   m_EditorClassIdentifier: 
   levelNumber: 7
-  timeLimit: 10
+  timeLimit: 20
   objectsToBuild:
   - objectData: {fileID: 11400000, guid: caf3d91c8376e8d4983ebb5fedd46d01, type: 2}
     quantity: 1

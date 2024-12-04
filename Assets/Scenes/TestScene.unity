@@ -773,11 +773,11 @@ PrefabInstance:
     - target: {fileID: 1195953859350152228, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
       propertyPath: 'levels.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: ab34caee874210d49aae823aed09b29d, type: 2}
+      objectReference: {fileID: 11400000, guid: 3d863e4229aecaf4288d5ce6ded77f69, type: 2}
     - target: {fileID: 1195953859350152228, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
       propertyPath: 'levels.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 3d863e4229aecaf4288d5ce6ded77f69, type: 2}
+      objectReference: {fileID: 11400000, guid: ab34caee874210d49aae823aed09b29d, type: 2}
     - target: {fileID: 1195953859350152228, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
       propertyPath: 'levels.Array.data[2]'
       value: 
@@ -1190,6 +1190,10 @@ PrefabInstance:
       propertyPath: 'enableDisableFlashes.Array.data[11]'
       value: 
       objectReference: {fileID: 1429132484}
+    - target: {fileID: 8335500609665655060, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
+      propertyPath: thresholdMultiplier
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

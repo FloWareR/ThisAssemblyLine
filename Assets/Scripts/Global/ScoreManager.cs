@@ -7,6 +7,7 @@ namespace Global
     public class ScoreManager : MonoBehaviour
     {
         public static ScoreManager Instance;
+        [SerializeField] private float thresholdMultiplier;
         
         private void Awake()
         {
@@ -59,23 +60,29 @@ namespace Global
 
             return snapPointsList;
         }
-
+        
         private float CalculateDistance(List<GameObject> objectList)
         {
             var object1 = objectList[0];
             var object2 = objectList[1];
             var distance = Vector3.Distance(object1.transform.position, object2.transform.position);
+            Debug.Log(($"{(object1.transform.position + object2.transform.position) / 2}"));
             return (float)System.Math.Round(distance, 4);
 
         }
         
         private float CalculateScore(float prefabDistance, float playerDistance)
         {
-            var score = Mathf.Abs(playerDistance - 1) * 100;
-            if (score > 98.5f) score = 100;
-            if (score < 65f) score *= .5f;
-            
-            return score;
+            var maxDistance = prefabDistance * thresholdMultiplier;
+            if (playerDistance > maxDistance)
+            {
+                return -50f;
+            }
+            else
+            {
+                float score = Mathf.Lerp(100f, 0f, (playerDistance - prefabDistance) / (maxDistance - prefabDistance));
+                return Mathf.Clamp(score, 0f, 100f);
+            }
         }
 
         
