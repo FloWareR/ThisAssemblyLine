@@ -50,18 +50,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: Scrap1
-    prefab: {fileID: 5343162583103934119, guid: 5f584a390e9fc9c4f91a5ed1f1cec886, type: 3}
-    initialSize: 5
-  - tag: Scrap2
-    prefab: {fileID: 1407957415489668467, guid: 85c069c11b1236a4abed7adc8c11e269, type: 3}
-    initialSize: 5
-  - tag: Scrap3
-    prefab: {fileID: 2226234696440065480, guid: fe2f2ed4ab290704c86896fe893c7638, type: 3}
-    initialSize: 5
-  - tag: Scrap4
-    prefab: {fileID: 851577148133218188, guid: d2ebcd74d965b7145b0c5af0c59404a5, type: 3}
-    initialSize: 6
   - tag: HandHeldUI
     prefab: {fileID: 1801814835272169594, guid: e36a51a57c8cf2143898d06936987e8a, type: 3}
     initialSize: 5
@@ -70,6 +58,36 @@ MonoBehaviour:
     initialSize: 6
   - tag: MineCart
     prefab: {fileID: 3960006085021854714, guid: acd03c7402f785c4f8ece7546e2f97ea, type: 3}
+    initialSize: 6
+  - tag: Bottle_A
+    prefab: {fileID: 5343162583103934119, guid: 5f584a390e9fc9c4f91a5ed1f1cec886, type: 3}
+    initialSize: 6
+  - tag: Bottle_B
+    prefab: {fileID: 1407957415489668467, guid: 85c069c11b1236a4abed7adc8c11e269, type: 3}
+    initialSize: 6
+  - tag: DiversMask_A
+    prefab: {fileID: 6818980597994582122, guid: c963f5ddd5e629f4ca8d686daa4b3cef, type: 3}
+    initialSize: 6
+  - tag: DiversMask_B
+    prefab: {fileID: 6515417779332803594, guid: 9595cecbd4d6bf0489eb98fe1606d4d4, type: 3}
+    initialSize: 6
+  - tag: FryPan_A
+    prefab: {fileID: 8152407337448845942, guid: 2c3694b30b995b1419d1c4b6826cf168, type: 3}
+    initialSize: 6
+  - tag: FryPan_B
+    prefab: {fileID: 8190182766521824582, guid: a3be68141e9cc11428673f6a77c2dfab, type: 3}
+    initialSize: 6
+  - tag: WateringCan_A
+    prefab: {fileID: 4567849334064278238, guid: 42756644c6cb7f744a0669ba4f680e04, type: 3}
+    initialSize: 6
+  - tag: WateringCan_B
+    prefab: {fileID: 7629035223343196363, guid: 4accd7889e4d50044aa334fbed03936a, type: 3}
+    initialSize: 6
+  - tag: Headphones_A
+    prefab: {fileID: 5280708695820049925, guid: e88e517d8a23afd49bfd2809e098a57a, type: 3}
+    initialSize: 6
+  - tag: Headphones_B
+    prefab: {fileID: 8111261753083526905, guid: 29f8bebc0f7c78144b558d7bcd1ba807, type: 3}
     initialSize: 6
 --- !u!114 &4919032404744649323
 MonoBehaviour:
@@ -104,6 +122,14 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: 3d863e4229aecaf4288d5ce6ded77f69, type: 2}
   - {fileID: 11400000, guid: ab34caee874210d49aae823aed09b29d, type: 2}
+  - {fileID: 11400000, guid: 07bb1816ec523e648aefb2fe338496c0, type: 2}
+  - {fileID: 11400000, guid: 8542b05e00ccc614fbf906c85ec6be1e, type: 2}
+  - {fileID: 11400000, guid: 07fc60013bb0a90439485ceb56ddfedd, type: 2}
+  - {fileID: 11400000, guid: cedfd538e7a428f41a36ed997f01a69b, type: 2}
+  - {fileID: 11400000, guid: 0efed31151f0a77439acd65ce12da745, type: 2}
+  - {fileID: 11400000, guid: d6132360bd5daa049925efada73f04b6, type: 2}
+  - {fileID: 11400000, guid: db20a8fc851d46e4baddbc7b627b5705, type: 2}
+  - {fileID: 11400000, guid: a002a1c7f360a944b9757e3970e3015d, type: 2}
   currentLevel: {fileID: 0}
   currentLevelIndex: 0
   currentScore: 0

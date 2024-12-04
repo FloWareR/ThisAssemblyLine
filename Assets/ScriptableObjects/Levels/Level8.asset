@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbb74590a71d9242ad0c119780e8fa0, type: 3}
+  m_Name: Level8
+  m_EditorClassIdentifier: 
+  levelNumber: 8
+  timeLimit: 100
+  objectsToBuild:
+  - objectData: {fileID: 11400000, guid: 0708e48094584d2498b57e538e940e19, type: 2}
+    quantity: 5
+  - objectData: {fileID: 11400000, guid: df43d0d413f862941a9408511de1c2cd, type: 2}
+    quantity: 5
+  - objectData: {fileID: 11400000, guid: 4a36f3a150f19c74ab7153db866a6b23, type: 2}
+    quantity: 5
+  - objectData: {fileID: 11400000, guid: 7baa1f33c9fd32e4badabb566ff3081c, type: 2}
+    quantity: 5
+  conveyorSpeed: 1
+  requiredPartProbability: 0.5
+  spawnInterval: 0.8
+  junkParts:
+  - {fileID: 11400000, guid: c31f52774343c54459edb3df55cf099e, type: 2}
+  - {fileID: 11400000, guid: 4f2e2bc9e5dbd3f40803d7c7d7e71ad6, type: 2}

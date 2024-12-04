@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdbb74590a71d9242ad0c119780e8fa0, type: 3}
-  m_Name: TestLevel2
+  m_Name: Level7
   m_EditorClassIdentifier: 
-  levelNumber: 2
-  timeLimit: 70
+  levelNumber: 7
+  timeLimit: 10
   objectsToBuild:
   - objectData: {fileID: 11400000, guid: caf3d91c8376e8d4983ebb5fedd46d01, type: 2}
-    quantity: 2
-  conveyorSpeed: 0.5
-  requiredPartProbability: 0.5
-  spawnInterval: 1.5
+    quantity: 1
+  conveyorSpeed: 1.5
+  requiredPartProbability: 1
+  spawnInterval: 0.3
   junkParts:
-  - {fileID: 11400000, guid: f6f9b2a25511169408d66e6c1d50601d, type: 2}
-  - {fileID: 11400000, guid: c910cdb7b02c47e45b1b24fbb36bdc9b, type: 2}
+  - {fileID: 11400000, guid: c31f52774343c54459edb3df55cf099e, type: 2}
