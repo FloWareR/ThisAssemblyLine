@@ -244,6 +244,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8f080c0b59dd644a5f4e4a230aa037, type: 3}
+--- !u!95 &22478064 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6025374132142231548, guid: 6e8f080c0b59dd644a5f4e4a230aa037, type: 3}
+  m_PrefabInstance: {fileID: 22478063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &53645469 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5052765152748953799, guid: 305118f5f61784b48b4ccb5d023bc403, type: 3}
@@ -653,6 +658,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 985750958552288570, guid: 305118f5f61784b48b4ccb5d023bc403, type: 3}
   m_PrefabInstance: {fileID: 1409399647}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &920558980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 920558982}
+  - component: {fileID: 920558981}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &920558981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920558980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211a5e13be14c7245ac3c4033190e64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transition: {fileID: 22478064}
+--- !u!4 &920558982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920558980}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.709809, y: -3.3654516, z: -23.893112}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &945788874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6564426125105402771, guid: 305118f5f61784b48b4ccb5d023bc403, type: 3}
@@ -1191,10 +1241,6 @@ PrefabInstance:
     - target: {fileID: 5474317973742845908, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7038964026860504759, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
-      propertyPath: enableDisableFlashes.Array.size
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7038964026860504759, guid: a55aee84b85f3b448a33084df08d360f, type: 3}
       propertyPath: 'minecartSpawnPoints.Array.data[0]'
@@ -2007,3 +2053,4 @@ SceneRoots:
   - {fileID: 1822743210956229833}
   - {fileID: 2680185766176554742}
   - {fileID: 22478063}
+  - {fileID: 920558982}
