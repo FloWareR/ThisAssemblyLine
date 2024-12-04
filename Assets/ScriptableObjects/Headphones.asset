@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a71a8845ae7b44bb7d9cc6431f3a87, type: 3}
+  m_Name: Headphones
+  m_EditorClassIdentifier: 
+  objectName: Headphones
+  objectPrefab: {fileID: 3104286194854852716, guid: e6ff6ff1840ef8444958a500a00f2223, type: 3}
+  objectImage: {fileID: 21300000, guid: 6c5a2b07796454640b963963729b86ae, type: 3}
+  requiredParts:
+  - {fileID: 11400000, guid: 6ea6bac7e1b58294c8d184ed0032c6d2, type: 2}
+  - {fileID: 11400000, guid: 07e9d98e80be3424abec62c1d06cea81, type: 2}

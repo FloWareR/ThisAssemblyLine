@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f93506119b3504aa221927d4b25d6c, type: 3}
-  m_Name: TestPart2
+  m_Name: Headphones_B
   m_EditorClassIdentifier: 
-  partName: Scrap2
-  partPrefab: {fileID: 1407957415489668467, guid: 85c069c11b1236a4abed7adc8c11e269, type: 3}
+  partName: Headphones_B
+  partPrefab: {fileID: 8111261753083526905, guid: 29f8bebc0f7c78144b558d7bcd1ba807, type: 3}

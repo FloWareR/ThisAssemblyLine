@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1a71a8845ae7b44bb7d9cc6431f3a87, type: 3}
-  m_Name: TestObject1
+  m_Name: DiversMask
   m_EditorClassIdentifier: 
-  objectName: TestObject1
-  objectPrefab: {fileID: 7083999577568864036, guid: f6af7703edde3f94e82addb05f524ed9, type: 3}
-  objectImage: {fileID: 21300000, guid: 750943d906d2be84c82c3f275a34d3eb, type: 3}
+  objectName: DiversMask
+  objectPrefab: {fileID: 5546177271054702747, guid: 7106a57c8424ae24b8768126b32748ea, type: 3}
+  objectImage: {fileID: 21300000, guid: 782f5e56500db7c418507dfa33e4e455, type: 3}
   requiredParts:
-  - {fileID: 11400000, guid: c31f52774343c54459edb3df55cf099e, type: 2}
-  - {fileID: 11400000, guid: 4f2e2bc9e5dbd3f40803d7c7d7e71ad6, type: 2}
+  - {fileID: 11400000, guid: ed61ddcb3f2810c4d99cfb377e77645c, type: 2}
+  - {fileID: 11400000, guid: f95cd1bd9b4434040a8b30be6f9525cd, type: 2}
