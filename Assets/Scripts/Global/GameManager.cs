@@ -141,6 +141,7 @@ namespace Global
             { 
                 if (prefabObject.objectData.objectPrefab.name != playerGameObjectName)
                 {
+                    Debug.Log("CONTINUA");
                     continue;
                 }
                 previousObjectScore = (int)ScoreManager.Instance.CompareObjects(prefabObject.objectData.objectPrefab, 

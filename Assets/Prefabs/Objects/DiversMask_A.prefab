@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5848904201872485365}
   - component: {fileID: 7229626917296964013}
   m_Layer: 10
-  m_Name: Collider
+  m_Name: DiversMask_A
   m_TagString: Weldable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

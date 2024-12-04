@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8581019514567932282}
   - component: {fileID: 2712058878049047721}
   m_Layer: 10
-  m_Name: Collider
+  m_Name: WateringCan_A
   m_TagString: Weldable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
