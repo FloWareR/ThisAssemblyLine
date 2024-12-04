@@ -505,7 +505,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211a5e13be14c7245ac3c4033190e64a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 22478064}
 --- !u!4 &920558982
 Transform:
   m_ObjectHideFlags: 0
@@ -677,6 +676,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 305118f5f61784b48b4ccb5d023bc403, type: 3}
@@ -1532,5 +1533,4 @@ SceneRoots:
   - {fileID: 549378054}
   - {fileID: 1822743210956229833}
   - {fileID: 2680185766176554742}
-  - {fileID: 22478063}
   - {fileID: 920558982}

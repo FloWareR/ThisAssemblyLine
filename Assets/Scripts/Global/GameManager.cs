@@ -22,7 +22,8 @@ namespace Global
         public static event Action LevelTimeUp;
         public static event Action LevelDone;
 
-
+        public int allowedStrikes;
+        private int _strikes;
         public int currentLevelIndex = 0;
         public int currentScore = 0;
         public int previousObjectScore = 0;
@@ -39,9 +40,8 @@ namespace Global
                 Destroy(gameObject); 
                 return;
             }
+            
             instance = this;
-            DontDestroyOnLoad(gameObject); 
-
             _scoreBoardController = FindAnyObjectByType<ScoreBoardController>();
             _timerMonitorController = FindAnyObjectByType<TimerMonitorController>();
             
@@ -54,6 +54,7 @@ namespace Global
         private void OnDisable()
         {
             DeliveryBoxController.EvaluateObject -= OnEvaluateObject;
+            instance = null;
         }
         
         private void Start()
@@ -147,6 +148,16 @@ namespace Global
                     objectToBuild.quantity = Mathf.Max(0, objectToBuild.quantity - 1); 
                     break;
                 }
+            }
+
+            if (previousObjectScore < 60)
+            {
+                _strikes++;
+            }
+
+            if (_strikes > allowedStrikes)
+            {
+                LevelTimeUp?.Invoke();
             }
 
             _scoreBoardController.UpdateScores();
