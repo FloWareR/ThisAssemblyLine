@@ -46,7 +46,7 @@ public class ScoreBoardLights : MonoBehaviour
     
     private void GameOver()
     {
-        alertDuration = 10f;
+        alertDuration = 19.215f;
         StartCycle(LightCycleType.Alert);
     }
 

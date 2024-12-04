@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using ScriptableObjects;
+using UnityEngine.UI;
 
 namespace Environment
 {
@@ -14,6 +15,8 @@ namespace Environment
         [SerializeField] private TextMeshProUGUI scoreCounter;
         [SerializeField] private TextMeshProUGUI prevObjectCounter;
         [SerializeField] private TextMeshProUGUI levelCounter;
+        [SerializeField] private TextMeshProUGUI finalScore;
+        [SerializeField] private Image objectImage;
 
 
         [Header("Audio Clips")]
@@ -52,6 +55,13 @@ namespace Environment
         private void OnTimeUp()
         {
             PlayScoreSound(-100);
+            objectImage.color = Color.black;
+            finalScore.gameObject.transform.parent.gameObject.SetActive(true);
+            finalScore.gameObject.SetActive(true);
+            finalScore.text = GameManager.instance.currentScore.ToString();
+            scoreCounter.gameObject.transform.parent.gameObject.SetActive(false);
+            levelCounter.gameObject.transform.parent.gameObject.SetActive(false);
+            prevObjectCounter.gameObject.transform.parent.gameObject.SetActive(false);
         }
         
         private void OnLevelDone()
