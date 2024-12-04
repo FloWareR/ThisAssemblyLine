@@ -22,7 +22,8 @@ namespace Global
         public static event Action LevelTimeUp;
         public static event Action LevelDone;
 
-
+        public int allowedStrikes;
+        private int _strikes;
         public int currentLevelIndex = 0;
         public int currentScore = 0;
         public int previousObjectScore = 0;
@@ -147,6 +148,16 @@ namespace Global
                     objectToBuild.quantity = Mathf.Max(0, objectToBuild.quantity - 1); 
                     break;
                 }
+            }
+
+            if (previousObjectScore < 60)
+            {
+                _strikes++;
+            }
+
+            if (_strikes > allowedStrikes)
+            {
+                LevelTimeUp?.Invoke();
             }
 
             _scoreBoardController.UpdateScores();
