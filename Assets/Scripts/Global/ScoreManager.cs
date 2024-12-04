@@ -26,7 +26,7 @@ namespace Global
 
             var prefabDistance = CalculateDistance(prefabChildren);
             var playerDistance = CalculateDistance(playerChildren);
-
+            
             return CalculateScore(prefabDistance, playerDistance);
         }
         
@@ -71,7 +71,7 @@ namespace Global
         
         private float CalculateScore(float prefabDistance, float playerDistance)
         {
-            var score = Mathf.Abs((playerDistance / prefabDistance) - 100);
+            var score = Mathf.Abs(playerDistance - 1) * 100;
             if (score > 98.5f) score = 100;
             if (score < 65f) score *= .5f;
             

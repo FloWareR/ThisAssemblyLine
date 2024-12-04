@@ -138,10 +138,14 @@ namespace Global
             string playerGameObjectName = playerObject.name; 
             ;
             foreach (var prefabObject in currentLevel.objectsToBuild)
-            { 
+            {
+                if (playerGameObjectName == null) return;
+                if (playerGameObjectName.Contains("(Clone)"))
+                {
+                    playerGameObjectName = playerGameObjectName.Replace("(Clone)", "");
+                }
                 if (prefabObject.objectData.objectPrefab.name != playerGameObjectName)
                 {
-                    Debug.Log("CONTINUA");
                     continue;
                 }
                 previousObjectScore = (int)ScoreManager.Instance.CompareObjects(prefabObject.objectData.objectPrefab, 
