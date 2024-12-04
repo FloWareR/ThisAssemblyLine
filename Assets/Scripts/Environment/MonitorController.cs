@@ -1,3 +1,5 @@
+using System;
+using Global;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +11,6 @@ namespace Environment
         [SerializeField] private Image objectImage;
         [SerializeField] private TextMeshProUGUI objectQty;
 
-        
         public void UpdateMonitorInfo(Sprite newImage, int newQty)
         {
             objectImage.sprite = newImage;

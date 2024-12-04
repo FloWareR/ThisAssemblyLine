@@ -43,7 +43,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1407957415489668467, guid: 85c069c11b1236a4abed7adc8c11e269, type: 3}
       propertyPath: m_Name
-      value: Scrap2
+      value: Bottle_B
       objectReference: {fileID: 0}
     - target: {fileID: 5936517245098690894, guid: 85c069c11b1236a4abed7adc8c11e269, type: 3}
       propertyPath: m_LocalPosition.x
@@ -105,7 +105,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5343162583103934119, guid: 5f584a390e9fc9c4f91a5ed1f1cec886, type: 3}
       propertyPath: m_Name
-      value: Scrap1
+      value: Bottle_A
       objectReference: {fileID: 0}
     - target: {fileID: 6618478534123723382, guid: 5f584a390e9fc9c4f91a5ed1f1cec886, type: 3}
       propertyPath: m_LocalPosition.x

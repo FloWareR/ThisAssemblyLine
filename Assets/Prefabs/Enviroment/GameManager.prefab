@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 74e86dc5e533ba842974627661e9ba4a, type: 3}
   timeBetweenRounds: 5
   levels:
+  - {fileID: 11400000, guid: a002a1c7f360a944b9757e3970e3015d, type: 2}
   - {fileID: 11400000, guid: 3d863e4229aecaf4288d5ce6ded77f69, type: 2}
   - {fileID: 11400000, guid: ab34caee874210d49aae823aed09b29d, type: 2}
   - {fileID: 11400000, guid: 07bb1816ec523e648aefb2fe338496c0, type: 2}
@@ -129,14 +130,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0efed31151f0a77439acd65ce12da745, type: 2}
   - {fileID: 11400000, guid: d6132360bd5daa049925efada73f04b6, type: 2}
   - {fileID: 11400000, guid: db20a8fc851d46e4baddbc7b627b5705, type: 2}
-  - {fileID: 11400000, guid: a002a1c7f360a944b9757e3970e3015d, type: 2}
   currentLevel: {fileID: 0}
+  allowedStrikes: 3
   currentLevelIndex: 0
   currentScore: 0
   previousObjectScore: 0
   _isLevelActive: 0
   musicVolume: 0.5
   levelTimeLeft: 0
+  objectsLeft: []
 --- !u!114 &2239955347208057656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +152,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monitorTag: HandHeldUI
-  monitorSpawnPoint: {fileID: 0}
+  monitorSpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  monitorList: []
 --- !u!114 &8335500609665655060
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using System.Linq;
 using ScriptableObjects;
 using UnityEngine;
 using Environment;
+using UnityEngine.Serialization;
 
 namespace Global
 {
@@ -30,7 +31,7 @@ namespace Global
         public bool _isLevelActive;
         public float musicVolume = 1f;
         public float levelTimeLeft;
-        private ObjectToBuild[] _objectsLeft;
+        public ObjectToBuild[] objectsLeft;
         private bool _isChangingLevel = false;
         
         private void Awake()
@@ -79,7 +80,7 @@ namespace Global
         private void EvaluateObjects()
         {
             var allObjectsBuilt = true;
-            foreach (var objectToBuild in _objectsLeft)
+            foreach (var objectToBuild in objectsLeft)
             {
                 if (objectToBuild.quantity != 0)
                 {
@@ -121,14 +122,13 @@ namespace Global
             currentLevel = levels[levelIndex];
             _isLevelActive = true;
             levelTimeLeft = currentLevel.timeLimit;
-            _objectsLeft = currentLevel.objectsToBuild
+            objectsLeft = currentLevel.objectsToBuild
                 .Select(obj => new ObjectToBuild
                 {
                     objectData = obj.objectData,
                     quantity = obj.quantity
-                }).ToArray();            foreach (var objectToBuild in _objectsLeft)
+                }).ToArray();            foreach (var objectToBuild in objectsLeft)
             {
-                Debug.Log($"{objectToBuild.objectData.name}, {objectToBuild.quantity}");
             }
             LoadNewLevel?.Invoke(currentLevel);
         }
@@ -142,7 +142,7 @@ namespace Global
                     playerObject);
                 currentScore += previousObjectScore;
                 playerGameObjectName = ScoreManager.Instance.ObjectCreated(prefabObject.objectData.objectPrefab, playerObject);
-                foreach (var objectToBuild in _objectsLeft)
+                foreach (var objectToBuild in objectsLeft)
                 {
                     if (objectToBuild.objectData.objectPrefab.name != playerGameObjectName) continue;
                     objectToBuild.quantity = Mathf.Max(0, objectToBuild.quantity - 1); 
